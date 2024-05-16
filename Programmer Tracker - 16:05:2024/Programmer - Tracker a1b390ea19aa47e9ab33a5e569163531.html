@@ -1,0 +1,725 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Programmer - Tracker</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a1b390ea-19aa-47e9-ab33-a5e569163531" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_14.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/October_27_icon.svg"/></div><h1 class="page-title">Programmer - Tracker</h1><p class="page-description"></p></header><div class="page-body"><p id="98cde863-84c1-4e8e-8aee-bee0cbafddf8" class=""><a href="https://www.notion.so/1e66fc0150654e5897e7a59b7bfb3f88?pvs=21">This Page is created to follow the course with notes and contents, for main database of Programmer Click Here.</a> </p><p id="39eef84b-fb2a-4ee1-b147-bfc9ebb7c364" class="">
+</p><p id="823cde71-7d2b-4b87-9234-e10cc242c33c" class="">
+</p><div><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Programming Concepts - Java</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 1 - 01/02 to 08/02</summary><div class="indented"><ul id="8d8dea1d-99d8-42d1-a647-57c1aa586c48" class="toggle"><li><details open=""><summary>Use of JAVA</summary><ul id="0f7fc227-5fec-40ba-8c66-93ecfb904a7c" class="bulleted-list"><li style="list-style-type:disc">Desktop Applications</li></ul><ul id="1c7251e7-90cd-463f-a2ff-14d21a401ca9" class="bulleted-list"><li style="list-style-type:disc">Web Application</li></ul><ul id="46f213c5-252f-4abe-8ed5-5b58606d3280" class="bulleted-list"><li style="list-style-type:disc"><strong>Applets</strong></li></ul><ul id="40a44663-6d65-4811-8ab6-806050c469a7" class="bulleted-list"><li style="list-style-type:disc">Distributed Applications</li></ul></details></li></ul><ul id="7ba51fd2-1ce2-49fc-abbf-eb0c04b3c68e" class="toggle"><li><details open=""><summary>JDK, JRE &amp; JVM</summary><ul id="e44f4978-d586-4504-a6e5-d36ac5866672" class="bulleted-list"><li style="list-style-type:disc">Interpreter &amp; JIT</li></ul></details></li></ul><ul id="f272101e-0092-4f27-8819-504bf8f38c18" class="toggle"><li><details open=""><summary>Platform Independency</summary></details></li></ul><ul id="22837223-1eb8-4f72-ad61-2b83c6ca2d83" class="toggle"><li><details open=""><summary>Source File Structure</summary><ul id="6f41090b-ca0c-448d-92ae-bbbe3e6588dd" class="bulleted-list"><li style="list-style-type:disc">Package Statements</li></ul><ul id="2de78096-7481-44a6-81ab-fcf392e38a86" class="bulleted-list"><li style="list-style-type:disc">Import Statements</li></ul><ul id="e431be43-894f-4efe-9ac4-34708969fe1c" class="bulleted-list"><li style="list-style-type:disc">Class/Interface Statements</li></ul></details></li></ul><ul id="006d13d7-f36a-405e-93ef-e17057d52be1" class="toggle"><li><details open=""><summary>Comments in Java</summary><ul id="8ddde519-23e5-4276-a840-c87c7b250c9b" class="bulleted-list"><li style="list-style-type:disc">Single Line</li></ul><ul id="21beac39-1eff-4b5e-8067-0aa4ac7ef64b" class="bulleted-list"><li style="list-style-type:disc">Multi Line</li></ul><ul id="8f03cbb5-8b1b-4e8b-b029-c249189da7d7" class="bulleted-list"><li style="list-style-type:disc">Javadoc</li></ul></details></li></ul><ul id="0cb30b84-30f1-4cbf-a912-96336c994bc7" class="toggle"><li><details open=""><summary>Tokens in Java</summary><ul id="42fde90f-9050-4767-94f1-8f059438f8a2" class="toggle"><li><details open=""><summary>Literals</summary><ul id="b60ed26c-89c4-4e35-a2b5-467fafc8a111" class="bulleted-list"><li style="list-style-type:disc">Integer Literals</li></ul><ul id="64f5b135-58bc-42fc-a008-a839b0ce7d41" class="bulleted-list"><li style="list-style-type:disc">Floating Point Literals</li></ul><ul id="bf7e97d5-f60d-440c-a81f-e8a21a649bfb" class="bulleted-list"><li style="list-style-type:disc">Character Literals</li></ul><ul id="a43a7035-346e-4734-90bd-0dab42910b3a" class="bulleted-list"><li style="list-style-type:disc">Boolean Literals</li></ul></details></li></ul><ul id="34f1594e-41c9-4d46-b421-88e738835b65" class="toggle"><li><details open=""><summary>Keywords</summary></details></li></ul><ul id="d787cf26-cad9-44d7-8fd9-4c319941e8f6" class="toggle"><li><details open=""><summary>Identifiers</summary></details></li></ul><ul id="b73418d3-bce1-4948-bdb1-d427e0825a75" class="toggle"><li><details open=""><summary>Separators</summary></details></li></ul><ul id="1fa29216-767e-49f1-b739-6c2d85f73983" class="toggle"><li><details open=""><summary>Operators</summary></details></li></ul></details></li></ul><ul id="f8183491-1728-4fb9-845d-25c0ab45f61d" class="toggle"><li><details open=""><summary>Datatypes in Java</summary><ul id="92b4c2f9-c9d7-4d7a-b855-25af68dd4491" class="bulleted-list"><li style="list-style-type:disc">Integer</li></ul><ul id="7af43428-814c-43e6-b223-109899e24a9d" class="bulleted-list"><li style="list-style-type:disc">Floating-Point</li></ul><ul id="f57b2bbf-6e83-4457-a34c-fbc8a0c9e25f" class="bulleted-list"><li style="list-style-type:disc">Character Data</li></ul><ul id="d58385c0-e06e-4ec3-80d5-0d568823d7c0" class="bulleted-list"><li style="list-style-type:disc">Boolean</li></ul></details></li></ul><ul id="202b1a3a-a28f-4f1d-a553-4666798441ef" class="toggle"><li><details open=""><summary>Variables in Java</summary><ul id="850ee7a7-e9a7-45f7-b69b-65f6c4f222b6" class="toggle"><li><details open=""><summary>Local</summary><ul id="3424b8e7-efd4-482f-bcd6-d6a3c9ba74c2" class="bulleted-list"><li style="list-style-type:disc">Scope &amp; Lifetime</li></ul></details></li></ul><ul id="71cdff82-1767-4962-8f5d-6edf82253121" class="bulleted-list"><li style="list-style-type:disc">Instance</li></ul><ul id="36c382ed-c858-4196-832c-5db589cdbf64" class="bulleted-list"><li style="list-style-type:disc">Class/Static</li></ul></details></li></ul><ul id="0b1de469-9ea9-48b5-830b-7b3bec95d5ca" class="toggle"><li><details open=""><summary>Operators</summary><ul id="15e05051-5a65-4e2d-8c68-daed0f1b4880" class="bulleted-list"><li style="list-style-type:disc">Arithmetic Operators</li></ul><ul id="c8382815-6624-4c33-902a-117bea145ed6" class="bulleted-list"><li style="list-style-type:disc">Comparison Operators</li></ul><ul id="822695ec-d6c9-4b6e-b8a5-e46f5a74c2f2" class="bulleted-list"><li style="list-style-type:disc">Boolean Logical Operators</li></ul><ul id="0bbdd70d-fed9-4286-9a15-df1b6d9e1127" class="bulleted-list"><li style="list-style-type:disc">Shortcircuit Operators</li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="24ad19f9-9af4-42eb-b57e-2f18bbaaf51f"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_01-02.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/a6606323-18e1-4263-b94e-63a91909c42a/Java_01-02.pdf</a></div></figure><p id="d8fc56ae-a9ac-4550-ad78-4b94afe2d26a" class="">
+</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 2 - 09/02 to 16/02</summary><div class="indented"><ul id="1748d49a-2069-4c93-9e4c-2a08a2010184" class="toggle"><li><details open=""><summary>Operators</summary><ul id="d8a2bed8-c1e4-4c40-b508-594179326b28" class="toggle"><li><details open=""><summary>Bitwise Operators</summary></details></li></ul><ul id="3f120856-77ec-4700-9e47-a4ec0c6ac8d2" class="toggle"><li><details open=""><summary>Arithmetic Assignment Operators</summary></details></li></ul><ul id="cc423f2a-0d23-4fce-bd99-5271ac4490e8" class="toggle"><li><details open=""><summary>Ternary Operators</summary></details></li></ul><ul id="3bd11c21-0bc6-4e28-b760-f799d38fdea7" class="toggle"><li><details open=""><summary>Arithmetic Expressions</summary></details></li></ul><ul id="d04e5953-ecfa-4fd3-aa53-ac19c8f353bd" class="toggle"><li><details open=""><summary>Integer Expressions</summary></details></li></ul><ul id="5d4af0cc-d580-4044-ba54-465f8e2804d7" class="toggle"><li><details open=""><summary>Floating Point Expression</summary></details></li></ul><ul id="3d56be70-d2ab-4b6e-b581-fb0768962b92" class="toggle"><li><details open=""><summary>Conversion/Casting</summary><ul id="dc89d8d3-5bdc-481e-a324-79e4e3dbf68b" class="bulleted-list"><li style="list-style-type:disc">Implicit </li></ul><ul id="fd89aca9-a966-41d5-b178-1bee6e670fd1" class="bulleted-list"><li style="list-style-type:disc">Explicit</li></ul><ul id="3a30ea4e-5cd7-4c04-aa4f-ca61586b09e3" class="bulleted-list"><li style="list-style-type:disc">Exceptions</li></ul></details></li></ul></details></li></ul><ul id="9e51193a-b07d-4de7-9704-6929fab6fde9" class="toggle"><li><details open=""><summary>Input from User</summary><ul id="59cd5450-6412-47b8-9473-280556f9432d" class="bulleted-list"><li style="list-style-type:disc">Scanner Class</li></ul></details></li></ul><ul id="bfa7c8ca-68b1-4df5-891d-e6975fe47256" class="toggle"><li><details open=""><summary>Arrays</summary></details></li></ul><ul id="daf8e124-d63b-4920-b0eb-89576c1adc10" class="toggle"><li><details open=""><summary>2-D Array</summary></details></li></ul><p id="11120465-1c11-484f-9daf-9c40a9f326fb" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="7a0f1171-48a4-4515-bbe4-a20b7a5607d2"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_0902_to_1602_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/556fc418-6467-460e-a6ef-2f51acb95e2b/Java_-_0902_to_1602_compressed.pdf</a></div></figure><p id="a851632a-818b-4e5f-a9ae-dfdf49378cde" class="">
+</p></div></details><p id="c5527ec1-7f84-4410-8674-034611c7f7f8" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 3 - 19/02 to 23/02</summary><div class="indented"><ul id="d17b71f7-7e65-4ebe-803f-6bd1628d6dcf" class="toggle"><li><details open=""><summary>Var</summary><ul id="6416ea85-2c40-4167-8567-9f9f12a41b26" class="bulleted-list"><li style="list-style-type:disc">Limitation</li></ul></details></li></ul><ul id="d3acabd5-8219-4be1-b668-75aec89e0e64" class="toggle"><li><details open=""><summary>Control Statements</summary><ul id="dc20d50f-3adb-476b-b7e7-0dd3e782de90" class="toggle"><li><details open=""><summary>Selection Statements</summary><ul id="19062392-25e9-4366-b360-f1f3239a469d" class="toggle"><li><details open=""><summary>If</summary><ul id="eb04529d-5730-40af-8a46-6a6d681d5362" class="bulleted-list"><li style="list-style-type:disc">If</li></ul><ul id="0680e04a-4c18-4df9-b492-0a7d79aad085" class="bulleted-list"><li style="list-style-type:disc">If - else</li></ul><ul id="a322543d-8a16-49bc-a5e3-123260e90a60" class="bulleted-list"><li style="list-style-type:disc">If - else - if ladder</li></ul><ul id="e80d7443-1ddc-4f96-b30f-1713c43b2c06" class="bulleted-list"><li style="list-style-type:disc">Nested if</li></ul></details></li></ul><ul id="bfbe26b1-21ad-4db2-a1cc-f47a2db237c2" class="toggle"><li><details open=""><summary>Switch</summary><ul id="fe446d94-e880-498d-82d7-747870db611b" class="bulleted-list"><li style="list-style-type:disc">Switch Expression &amp; Yield</li></ul><ul id="d01f5e62-9c5e-4ac6-a0ea-d506a9ec48b9" class="bulleted-list"><li style="list-style-type:disc">Arrow Case</li></ul><ul id="57286805-a371-4467-9af8-acc8c3168be2" class="bulleted-list"><li style="list-style-type:disc">Cases of Switch Constant</li></ul><ul id="9e1c435b-f00e-47b9-9688-df8a5eb4f338" class="bulleted-list"><li style="list-style-type:disc">Traditional Switch &amp; Arrow</li></ul></details></li></ul></details></li></ul><ul id="fa0d7219-35ee-4882-81c9-87c8519edf55" class="toggle"><li><details open=""><summary>Iterative Statements</summary><ul id="baaf354d-9844-4258-bbab-55aeb43551ec" class="bulleted-list"><li style="list-style-type:disc">While</li></ul><ul id="077a25c3-309b-46ab-b5be-417676d61120" class="bulleted-list"><li style="list-style-type:disc">Do - While</li></ul><ul id="d4ac9b0f-ca06-4266-a7cd-5dd57e38296c" class="bulleted-list"><li style="list-style-type:disc">For</li></ul><ul id="5f770bdb-f8f5-4e22-a2db-54025d0ce061" class="bulleted-list"><li style="list-style-type:disc">For Each</li></ul></details></li></ul><ul id="9236ab34-05a7-45a1-9fbe-7dcab75642e8" class="toggle"><li><details open=""><summary>Jump Statements</summary><ul id="f6894f8d-d35a-49b6-a9f2-1b905193cdea" class="bulleted-list"><li style="list-style-type:disc">Break</li></ul><ul id="098de662-ba32-4fc3-85ad-e3088e863d91" class="bulleted-list"><li style="list-style-type:disc">Continue</li></ul><ul id="fc6d62ff-f8e7-4326-8365-9164dc98d345" class="bulleted-list"><li style="list-style-type:disc">Return</li></ul></details></li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="e208fc8d-c0db-48c5-94e2-97a9c86f4ab1"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_1902_to_2302_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/860c9cff-91b3-4728-85fc-a48dc764cc01/Java_-_1902_to_2302_compressed.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 4 - 26/02 to 02/03</summary><div class="indented"><ul id="44ab0c9e-dc3c-4918-8349-c52263f30521" class="toggle"><li><details open=""><summary>Object Oriented Concepts</summary><ul id="377b52cb-5c06-4739-a125-a86115d3cf75" class="toggle"><li><details open=""><summary>Object</summary></details></li></ul><ul id="2757da57-efd4-40a7-b8d7-ffea434c9e33" class="toggle"><li><details open=""><summary>Differences</summary><ul id="4801c88e-6a57-43be-a8bf-6f9469609189" class="bulleted-list"><li style="list-style-type:disc">Complexity</li></ul><ul id="884bc9b1-13c0-424a-aaf7-135130429dbc" class="bulleted-list"><li style="list-style-type:disc">Bottom - up approach</li></ul><ul id="bea1abc1-11dc-4c76-b72a-3fd126ecedd9" class="bulleted-list"><li style="list-style-type:disc">Reusability</li></ul><ul id="b402bd08-1692-4d57-aad4-192861aba3dd" class="bulleted-list"><li style="list-style-type:disc">Extendibility</li></ul></details></li></ul><ul id="14838ba8-31a2-4366-be45-f178adf2c3db" class="toggle"><li><details open=""><summary>Class</summary></details></li></ul><ul id="66dd4302-9e73-4086-bced-b857f5766967" class="toggle"><li><details open=""><summary>Abstraction</summary></details></li></ul><ul id="0641ec29-f548-4410-9ca6-94c7fdc982b5" class="toggle"><li><details open=""><summary>Encapsulation</summary></details></li></ul><ul id="4384e2df-b931-4f35-a28a-8f46130c4dfe" class="toggle"><li><details open=""><summary>Inheritance</summary></details></li></ul><ul id="5e79f29f-28b4-4991-a868-14f1993e8af9" class="toggle"><li><details open=""><summary>Types of Inheritance</summary><ul id="2a9e54ee-22c2-4329-a9a3-f36410e9e404" class="bulleted-list"><li style="list-style-type:disc">Single Inheritance</li></ul><ul id="e8e99717-ebf4-46bf-8fbc-a31bf59499c0" class="bulleted-list"><li style="list-style-type:disc">Multi-Level Inheritance</li></ul><ul id="05bd8c01-0005-445f-ab0e-2cfe1292bc54" class="bulleted-list"><li style="list-style-type:disc">Multiple Inheritance</li></ul><ul id="e34c9bf1-b760-4baa-8f0c-da43168ac102" class="bulleted-list"><li style="list-style-type:disc">Multi-Path Inheritance</li></ul></details></li></ul><ul id="e95c6a35-57f3-451b-adaa-ba5f93cfdc45" class="toggle"><li><details open=""><summary>Polymorphism</summary><ul id="ac125b80-13d9-4d70-90e3-aec28b1fbb10" class="bulleted-list"><li style="list-style-type:disc">Function Overloading</li></ul><ul id="ddffdc48-3052-4abd-a168-11e2bd29179f" class="bulleted-list"><li style="list-style-type:disc">Function Overriding</li></ul><ul id="0af06ae3-d683-4aab-b39a-476333f883cf" class="bulleted-list"><li style="list-style-type:disc">Operator Overloading</li></ul><ul id="208c28c0-b1fc-4be6-b04a-12e2b13bfb73" class="bulleted-list"><li style="list-style-type:disc">Polymorphic References</li></ul></details></li></ul></details></li></ul><ul id="fa7e707f-16da-44dc-a4d6-91d6a1fbd6e9" class="toggle"><li><details open=""><summary>Aggregation/Composition</summary></details></li></ul><ul id="287e6045-e758-4322-9f7b-95f5a20bc6e2" class="toggle"><li><details open=""><summary>Generic Classes</summary></details></li></ul><ul id="2cfa5e8c-6f65-49ac-81d3-7e5a730ffc29" class="toggle"><li><details open=""><summary>Classes</summary><ul id="9913674e-6668-440d-9fe4-32f430ecd12f" class="bulleted-list"><li style="list-style-type:disc">Access Modifiers</li></ul><ul id="f4ffd04c-7e7c-48ef-bc3e-df94f159272b" class="bulleted-list"><li style="list-style-type:disc">Class Members</li></ul><ul id="11fa6db3-222d-4831-bb87-4990c55c9646" class="bulleted-list"><li style="list-style-type:disc">Access Modifiers(Class Members)</li></ul><ul id="b7860908-0ce4-4d49-b323-4970e938288d" class="bulleted-list"><li style="list-style-type:disc">Instance variable/ Object Variable</li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="a64f6907-67c1-4350-bbb2-85fda6bc6b14"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_2602_to_0203_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/b484b40b-5b51-468c-afb3-5aa9e3635941/Java_-_2602_to_0203_compressed.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 5 - 04/03 to 09/03</summary><div class="indented"><ul id="32bc8df7-3115-4d96-9563-380de921e4ff" class="toggle"><li><details open=""><summary>Class Method</summary></details></li></ul><ul id="fd7aacb8-84c7-4601-bd19-961d06bf15b3" class="toggle"><li><details open=""><summary>This Keyword</summary></details></li></ul><ul id="55502b63-b2cc-4993-b3c6-7aed42ebfb8a" class="toggle"><li><details open=""><summary>Static Variable</summary></details></li></ul><ul id="5f1409c2-a8d7-47b8-955d-2dc1fd03a8f4" class="toggle"><li><details open=""><summary>Method</summary><ul id="c3a33b24-f12f-4e9f-8de3-deaac03c1799" class="bulleted-list"><li style="list-style-type:disc">Instance Method</li></ul><ul id="5d13808e-8a25-49ed-89f0-c2b16bee59c5" class="bulleted-list"><li style="list-style-type:disc">Static Method</li></ul></details></li></ul><ul id="c02beb12-75a6-41c0-82ac-6a3d23a76d34" class="toggle"><li><details open=""><summary>Constructor</summary></details></li></ul><ul id="e709d1fb-848c-4ce3-954f-0527d2b4936e" class="toggle"><li><details open=""><summary>Argument Passing Mechanism</summary></details></li></ul><ul id="78ebab16-b0e4-4e96-9e95-8fd6bd953651" class="toggle"><li><details open=""><summary>Varargs</summary></details></li></ul><p id="3da6062a-401d-4133-bf57-dd1f812d3a35" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="0cdae695-d717-4006-8436-6ec8420cc6e1"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_04-03_to_09-03.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/a5ba7594-d050-4582-8053-d8b521d283cc/Java_04-03_to_09-03.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 6 - 11/03 to 16/03</summary><div class="indented"><ul id="9b558ab7-a060-4a33-963c-98b89379a5b5" class="toggle"><li><details open=""><summary>Inheritance</summary></details></li></ul><ul id="4424e0c6-5577-4bfc-95d3-9a633b2e4d60" class="toggle"><li><details open=""><summary>Polymorphic References</summary></details></li></ul><ul id="7554180f-48da-4584-95b1-0a4494fac256" class="toggle"><li><details open=""><summary>Super</summary></details></li></ul><ul id="f7eb8d37-e7e6-435a-adc4-76aeb8582b28" class="toggle"><li><details open=""><summary>Method Overriding</summary></details></li></ul><ul id="9a31fbd7-3cf2-4611-8ec2-b80a00245d4d" class="toggle"><li><details open=""><summary>Final</summary></details></li></ul><ul id="7e091305-d909-4a64-b4b1-e6b1a53ef1d6" class="toggle"><li><details open=""><summary>Abstract Classes</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="92ddd1ba-e942-4f6f-9e44-f42a7f9d9987"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_1103_to_1703.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/35d4ee8a-d70a-490a-badc-52d773e2568b/Java_1103_to_1703.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 7 - 18/03 to 23/03</summary><div class="indented"><ul id="1d2d7839-1412-4673-9bba-e228960fb324" class="toggle"><li><details open=""><summary>Packages</summary></details></li></ul><ul id="644930a8-1f4d-496f-8789-34eca724ce34" class="toggle"><li><details open=""><summary>Imports</summary></details></li></ul><p id="7e7b3cea-363f-43fc-81f1-c6c7f5d6ea50" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="f66a97e1-e731-434e-8d5e-2a1706dc0712"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_Week_7_-_1803_to_2303.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/cd43dded-4340-4a24-b3d1-0ba05d4dc349/Java_Week_7_-_1803_to_2303.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 8 - 25/03 to 30/03</summary><div class="indented"><ul id="d98220ee-ed8f-487a-8cbd-fd255b954501" class="toggle"><li><details open=""><summary>Interface</summary><ul id="1e520d30-7d8d-482f-badb-d5a255136f9a" class="bulleted-list"><li style="list-style-type:disc">Methods of Interface</li></ul><ul id="628e827c-315c-4b7c-96cf-f1ae36394e9b" class="bulleted-list"><li style="list-style-type:disc">Data Members of Interface</li></ul></details></li></ul><p id="0722d9ec-f4ae-4f1c-ac77-79ca7fcba3f3" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="77641bd5-523c-4cc1-8b49-9de3e4d6e30b"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_2503_to_2903.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/c47b1730-9c5a-41a1-957a-54da459e7fdb/Java_-_2503_to_2903.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 9 - 01/04 to 05/04</summary><div class="indented"><ul id="394b3367-a608-4340-98b4-4a27811a26b0" class="toggle"><li><details open=""><summary>More Interface Examples</summary></details></li></ul><ul id="508dec40-2627-4107-abff-776b6e697b83" class="toggle"><li><details open=""><summary>New Addition in Interface</summary></details></li></ul><ul id="e2269e3f-62b9-46d2-816f-35f193922366" class="toggle"><li><details open=""><summary>Modifiers</summary><ul id="235d830d-2978-48b2-afe1-4d945c58847d" class="toggle"><li><details open=""><summary>Final</summary><ul id="da56d64f-638d-4827-aab8-877e51a5420e" class="toggle"><li><details open=""><summary>Local Var</summary></details></li></ul><ul id="41a7521d-3530-48bf-b842-f062417ab363" class="toggle"><li><details open=""><summary>Instance Var</summary></details></li></ul><ul id="82ee10a0-9a43-4b1f-8b15-05cb48c045c6" class="toggle"><li><details open=""><summary>Class Var</summary></details></li></ul><ul id="c114f2ec-a368-4602-b3eb-9d1338809b4f" class="toggle"><li><details open=""><summary>Method</summary></details></li></ul><ul id="04ba72a3-8729-41fb-8082-4120f3c7c79f" class="toggle"><li><details open=""><summary>Class</summary></details></li></ul></details></li></ul><ul id="1f574dd6-876b-4999-8160-a87e347d5b5e" class="toggle"><li><details open=""><summary>Static</summary><ul id="eba45bd2-833e-4035-b0c8-f25bff178502" class="toggle"><li><details open=""><summary>Variable</summary></details></li></ul><ul id="0c2501aa-aa6d-433f-bff7-8433dfbd18cb" class="toggle"><li><details open=""><summary>Block</summary></details></li></ul></details></li></ul><ul id="01806834-1b7c-417a-8fb5-b73a92587adb" class="toggle"><li><details open=""><summary>Abstract</summary></details></li></ul><ul id="eb0a9c8d-70fa-47b3-ad0f-0c7481e30bd0" class="toggle"><li><details open=""><summary>Synchronised</summary></details></li></ul><ul id="82b9f5ce-4aac-477a-9fe4-6c304745e2b0" class="toggle"><li><details open=""><summary>Transient</summary></details></li></ul><ul id="b4edc307-78b6-42de-bac5-b8cf8bda6207" class="toggle"><li><details open=""><summary>Native</summary></details></li></ul><ul id="178a3a95-d347-44ef-8464-f326869cb29a" class="toggle"><li><details open=""><summary>Volatile</summary></details></li></ul></details></li></ul><ul id="758f444f-0389-4afa-a82f-2b2c81a398e4" class="toggle"><li><details open=""><summary>Exception Handling</summary><ul id="a2269bb6-9d80-4e15-8326-dd80f93874b4" class="bulleted-list"><li style="list-style-type:disc">Hierarchy</li></ul><ul id="4c09499d-b083-4781-b6cb-a2a51f32e561" class="bulleted-list"><li style="list-style-type:disc">Examples</li></ul><ul id="36ba8ed9-f0a1-4aea-80bd-6cd6786684ce" class="bulleted-list"><li style="list-style-type:disc">Try - Catch - Finally</li></ul><ul id="58e6c150-3376-4384-9b2c-500e8c43afb7" class="bulleted-list"><li style="list-style-type:disc">Nested Exception</li></ul><ul id="4ecd06ab-d478-47be-a181-4612e1989613" class="bulleted-list"><li style="list-style-type:disc">Finally</li></ul><ul id="1018c7d8-32e2-4443-b2fa-46a4cfb3518c" class="bulleted-list"><li style="list-style-type:disc">Throws Keyword</li></ul></details></li></ul><p id="1e2a2176-748f-4a42-8b9b-0ed25db82a0f" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="aca9df72-08fb-4fe8-b6c6-97a5edc1d209"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_0104_to_0504.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/de9ed123-b22a-4571-8f21-2b65d56fd6ef/Java_0104_to_0504.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 10 - 07/04 to 13/04</summary><div class="indented"><ul id="91d514bd-1b26-4d00-b77f-f970230c94aa" class="toggle"><li><details open=""><summary>User Defined Exception</summary></details></li></ul><ul id="2eea1193-78e8-40ea-8a88-c1836b492210" class="toggle"><li><details open=""><summary>Chained Exception (Use of initCause and getCause methods)</summary></details></li></ul><ul id="d13461ed-f04a-4060-b130-7fa1447d7849" class="toggle"><li><details open=""><summary>Try with Resource</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="6faab891-f8b9-45aa-81e3-7b5d86ee482e"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_0704_to_1304.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/0058d8f2-3fa8-4915-b3f9-e541faee8bb7/Java_-_0704_to_1304.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 11 - 14/04 to 18/04</summary><div class="indented"><ul id="24feac93-dfe3-4a1c-814d-d2f1504735ce" class="toggle"><li><details open=""><summary>Wrapper Class</summary><ul id="7963b6b6-fb4e-4cc3-9a79-c776da4e336c" class="bulleted-list"><li style="list-style-type:disc">Boxing - Autoboxing</li></ul><ul id="47ab57dd-c34b-4727-ac09-34877d1806c2" class="bulleted-list"><li style="list-style-type:disc">Unboxing - Autounboxing</li></ul></details></li></ul><ul id="6c46da03-a831-4cf5-8840-0d444db5de1a" class="toggle"><li><details open=""><summary>Object Class</summary><ul id="77e78cdb-0118-4223-96fe-780bde4755ee" class="toggle"><li><details open=""><summary>Methods</summary><ul id="b449cde1-ab18-4541-b162-e4a417ad3735" class="bulleted-list"><li style="list-style-type:disc">hashCode()</li></ul><ul id="13940f16-3ff7-4cd8-ab26-c10e447ecfac" class="bulleted-list"><li style="list-style-type:disc">equals()</li></ul><ul id="02b23647-429c-465f-9b49-76bf71108963" class="bulleted-list"><li style="list-style-type:disc">toString()</li></ul><ul id="37ff411b-e2be-46d2-9864-51e62b61e312" class="bulleted-list"><li style="list-style-type:disc">Finalize()</li></ul></details></li></ul></details></li></ul><ul id="8534d141-d7cf-40ea-895c-e598a4efdb02" class="toggle"><li><details open=""><summary>String Class</summary><ul id="0930acc7-636c-4270-a5fa-9bcf99048eb6" class="toggle"><li><details open=""><summary>Constructors</summary></details></li></ul><ul id="9c819d75-89ef-4919-9380-4f26971b8a12" class="toggle"><li><details open=""><summary>Methods</summary><ul id="22630310-11cb-45ff-88c8-00bac137890e" class="bulleted-list"><li style="list-style-type:disc">equals()</li></ul><ul id="1672074e-b817-404d-8f41-e73833c80345" class="bulleted-list"><li style="list-style-type:disc">equalsIgnoreCase()</li></ul><ul id="3f63ceee-56f0-4a04-b53b-011bcc189d52" class="bulleted-list"><li style="list-style-type:disc">compareTo()</li></ul><ul id="af30d9cb-cc6e-4c10-9ecd-215067d66d43" class="bulleted-list"><li style="list-style-type:disc">startsWith()</li></ul><ul id="74453111-8a9f-4bc6-8d41-58c0c96d455d" class="bulleted-list"><li style="list-style-type:disc">endsWith()</li></ul><ul id="fc0682c1-d9c6-44a5-96fd-09ee4296bb10" class="bulleted-list"><li style="list-style-type:disc">substring()</li></ul></details></li></ul></details></li></ul><ul id="bfbc811b-13ed-4e00-ba81-d410ccbfa099" class="toggle"><li><details open=""><summary>MultiThreading</summary><ul id="0be0f099-a8b1-4065-8a86-8baad422eb94" class="toggle"><li><details open=""><summary>Thread</summary></details></li></ul><ul id="f102ff42-6098-439d-8aed-b1d27719c117" class="toggle"><li><details open=""><summary>MultiTasking - MultiThreading - MultiProcessing - MultiProgramming</summary></details></li></ul><ul id="a8e00074-4b95-4bee-bbdd-95eb37f647bc" class="toggle"><li><details open=""><summary>Thread Stages</summary></details></li></ul><ul id="c556da25-ac34-4309-a768-d4b1cc384f63" class="toggle"><li><details open=""><summary>Thread Class</summary><ul id="087b4f2a-02f8-4730-bb8b-d838efb14fad" class="toggle"><li><details open=""><summary>Methods</summary><ul id="3eb3336b-7f5f-44b6-88e8-d7639adf9ce1" class="bulleted-list"><li style="list-style-type:disc">getName()</li></ul><ul id="58cfaa7c-0cb5-48ba-a2e9-6a8b9de93e0c" class="bulleted-list"><li style="list-style-type:disc">getPriority()</li></ul><ul id="1c606e77-e112-4e2e-a015-ae7e72976306" class="bulleted-list"><li style="list-style-type:disc">setName()</li></ul><ul id="f9723092-cccb-42bb-a973-7069334c8194" class="bulleted-list"><li style="list-style-type:disc">setPriority()</li></ul><ul id="2750b849-2de0-44f5-b033-e1781ca56cee" class="bulleted-list"><li style="list-style-type:disc">join()</li></ul><ul id="f26aa318-a60f-4387-b24f-3d0ae353dd26" class="bulleted-list"><li style="list-style-type:disc">run()</li></ul><ul id="e6e4837e-c0c0-4ea0-afb1-a33ce957325c" class="bulleted-list"><li style="list-style-type:disc">isAlive()</li></ul><ul id="d196b668-618e-40cc-99ef-15bcdad40df5" class="bulleted-list"><li style="list-style-type:disc">start()</li></ul><ul id="8193a90e-adee-499a-89ec-2ed5898b5c4c" class="bulleted-list"><li style="list-style-type:disc">yield()</li></ul><ul id="b1c7024a-852b-4ab6-a7cb-f23aae281714" class="bulleted-list"><li style="list-style-type:disc">sleep()</li></ul><ul id="5abba46b-b86b-4273-afdd-8a76e6d0d9e0" class="bulleted-list"><li style="list-style-type:disc">currentThread()</li></ul></details></li></ul></details></li></ul><ul id="f7040af9-b4e3-4ab9-9200-9782d21432c4" class="toggle"><li><details open=""><summary>Synchronized</summary></details></li></ul></details></li></ul><ul id="b3fd189c-b2df-4af4-bd5d-259b514435d3" class="toggle"><li><details open=""><summary>Marker Interface</summary></details></li></ul><ul id="de138f7b-1b3b-46ac-a2a9-aaf40199824a" class="toggle"><li><details open=""><summary>Generics</summary></details></li></ul><ul id="81bf378e-aa5f-4f45-b678-6febfecdd5ef" class="toggle"><li><details open=""><summary>Collection Framework</summary><ul id="8a736d59-1e4f-4a0b-b4e5-3693d6a2239a" class="toggle"><li><details open=""><summary>Interface</summary><ul id="95b4564d-6229-44d0-ba70-644e82bcfe81" class="toggle"><li><details open=""><summary>Iterator</summary><ul id="e52d5ef8-12e6-4464-bc81-aec1bb6d8e3f" class="bulleted-list"><li style="list-style-type:disc">hasNext()</li></ul><ul id="ac995a48-4227-45bd-8570-bbd8bdbb519d" class="bulleted-list"><li style="list-style-type:disc">next()</li></ul><ul id="28af3bf6-6aec-4899-be33-eb496522e9ad" class="bulleted-list"><li style="list-style-type:disc">remove()</li></ul></details></li></ul><ul id="80db15d2-35a4-4aeb-bea8-b8053ce53f34" class="toggle"><li><details open=""><summary>ListIterator</summary><ul id="a314add1-a4c3-4dff-9a8e-c8165dc8e0fe" class="bulleted-list"><li style="list-style-type:disc">add(Object o)</li></ul><ul id="a533735c-bc59-44d8-b1b7-a6d651b04f02" class="bulleted-list"><li style="list-style-type:disc">hasNext()</li></ul><ul id="7c8077a2-8911-45f7-95c5-348c8e4a2fe9" class="bulleted-list"><li style="list-style-type:disc">hasPrevious()</li></ul><ul id="0defec6a-9a66-4ab3-9462-ab30e0fdf14e" class="bulleted-list"><li style="list-style-type:disc">next()</li></ul><ul id="9c3e5513-3d68-4fb1-82aa-afefbb72ca43" class="bulleted-list"><li style="list-style-type:disc">previous()</li></ul><ul id="6ec24414-9125-48bc-82d6-d5282b22927d" class="bulleted-list"><li style="list-style-type:disc">nextIndex()</li></ul><ul id="83cdc31e-b89f-49f1-a205-848dd183f47e" class="bulleted-list"><li style="list-style-type:disc">previousIndex()</li></ul><ul id="5f63c1b2-f2d6-4639-beb0-db3ca19fb229" class="bulleted-list"><li style="list-style-type:disc">remove()</li></ul><ul id="a8ea2075-84af-44de-a0b2-8b61e6666ba8" class="bulleted-list"><li style="list-style-type:disc">set(Object o)</li></ul></details></li></ul><ul id="da8bd17d-85c3-434b-8fcf-a3dd74873a10" class="toggle"><li><details open=""><summary>RandomAccess</summary><p id="d19570b4-3d9a-45a2-8347-12407552ca19" class="">
+</p></details></li></ul><ul id="180e9fd0-7ad2-47b4-be24-207bf8f27983" class="toggle"><li><details open=""><summary>Comparator</summary><ul id="1d7a6c34-0496-4823-adeb-0549325a55b8" class="bulleted-list"><li style="list-style-type:disc">compare(Object o1, Object o2)</li></ul></details></li></ul></details></li></ul><ul id="9e313cc1-780a-4920-a765-a4539667e5fe" class="toggle"><li><details open=""><summary>Methods</summary><ul id="bcd6df5d-a4a4-4e07-a90a-5c6b70575f4d" class="bulleted-list"><li style="list-style-type:disc">add(Object o)</li></ul><ul id="4d7dd360-6938-4da9-842e-24d020003416" class="bulleted-list"><li style="list-style-type:disc">addAll(Collection c)</li></ul><ul id="3b00c694-c069-457b-878a-9e1b314cec5c" class="bulleted-list"><li style="list-style-type:disc">clear()</li></ul><ul id="14198d46-b6f4-4d62-ab8a-ba232aa2132b" class="bulleted-list"><li style="list-style-type:disc">contains(Object o)</li></ul><ul id="0e8f6970-425a-4c16-937c-3aa0eba67938" class="bulleted-list"><li style="list-style-type:disc">containAll(Collection c)</li></ul><ul id="a967e0c7-d684-4b71-a992-10501c861120" class="bulleted-list"><li style="list-style-type:disc">equals(Object o)</li></ul><ul id="f7d5aa15-7a23-48c6-a37f-ad8a07e053a7" class="bulleted-list"><li style="list-style-type:disc">isEmpty()</li></ul><ul id="98d247bb-15b2-4510-90ae-dcdc2153197d" class="bulleted-list"><li style="list-style-type:disc">iterator()</li></ul><ul id="df3cb44f-20f5-497d-90eb-d886e2978d4e" class="bulleted-list"><li style="list-style-type:disc">remove(Object o)</li></ul><ul id="c5705b39-35b1-4b19-917c-f486589303c7" class="bulleted-list"><li style="list-style-type:disc">removeAll(Collection c)</li></ul><ul id="997f0245-2ef0-4c12-b0d2-b948781779d7" class="bulleted-list"><li style="list-style-type:disc">retainAll(Collection c)</li></ul><ul id="cdc5a716-f6a2-4cb6-9873-5d75a6563ea4" class="bulleted-list"><li style="list-style-type:disc">size()</li></ul><ul id="2a282a29-7ae3-4f46-bb69-8351ab698c15" class="bulleted-list"><li style="list-style-type:disc">toArray()</li></ul><ul id="c8f3b151-5654-407b-9fff-7c465e7b236c" class="bulleted-list"><li style="list-style-type:disc">toString()</li></ul><p id="1de3081a-4f04-45d5-a2d2-9659477c3d86" class="">
+</p></details></li></ul></details></li></ul><p id="c88d8322-addb-46fc-afbc-2a267cdc469b" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="25d8c0b0-5959-424f-af26-92f4fdddae70"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_-_144_to_1804.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/d6c49140-bd89-4c30-9cb0-e21bd81e47f2/Java_-_144_to_1804.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Java Week 12 - 21/04 to 28/04</summary><div class="indented"><p id="ef739cd4-f8a3-4362-9e89-a232d2b8f26a" class="block-color-yellow"><em><strong>Weekend Class</strong></em></p><p id="7bde5ff9-ef98-4603-a775-d01f1d2b49bc" class="block-color-teal"><em><strong>Regular Week Day</strong></em></p><ul id="ee6ffa0d-b9bb-4479-891b-06bd301e127a" class="block-color-yellow_background toggle"><li><details open=""><summary>Sealed Class</summary></details></li></ul><ul id="169b0c50-c34c-42cd-b383-ef0b713af5ec" class="block-color-yellow_background toggle"><li><details open=""><summary>Sealed Interface</summary></details></li></ul><ul id="ec381101-0f70-47c8-8633-38b4e2f06245" class="block-color-yellow_background toggle"><li><details open=""><summary>Instanceof - Operator</summary></details></li></ul><ul id="b22fcceb-dfbb-4afe-b3ef-6374b04f46ad" class="block-color-yellow_background toggle"><li><details open=""><summary>Enumeration</summary></details></li></ul><ul id="d3cd2d53-75b9-4a60-8d5d-a5b2b3e95ed3" class="block-color-yellow_background toggle"><li><details open=""><summary>Assertions</summary></details></li></ul><ul id="041156a8-ce90-4002-8e9f-0844c72d3b2a" class="block-color-yellow_background toggle"><li><details open=""><summary>Nested Classes</summary><ul id="0c524d67-f5a1-410a-ac2d-95d956a2e81b" class="toggle"><li><details open=""><summary>Inner Classes</summary><ul id="422a1980-f201-472a-a488-ecfe286caadd" class="bulleted-list"><li style="list-style-type:disc">Non-Static Inner Classes</li></ul><ul id="d76e311b-aded-4891-ad72-091e82f07b91" class="bulleted-list"><li style="list-style-type:disc">Local Class</li></ul><ul id="faa45b55-288e-4865-ad28-dcd954faf10f" class="toggle"><li><details open=""><summary>Anonymous Class</summary><ul id="300127f8-fb11-4ec0-be23-f1543b504b69" class="bulleted-list"><li style="list-style-type:disc">Class that extends other class</li></ul><ul id="0373ca26-28be-4146-9330-d48b7c0f3799" class="bulleted-list"><li style="list-style-type:disc">Class that implements other Interface</li></ul><ul id="09ec292d-6649-4d25-b44c-61d33448fc4f" class="bulleted-list"><li style="list-style-type:disc">Anonymous class as argument</li></ul></details></li></ul></details></li></ul><ul id="51679180-9165-489e-b668-e735a60efc2b" class="toggle"><li><details open=""><summary>Static Inner Classes</summary></details></li></ul></details></li></ul><ul id="9ce28100-554a-4994-8544-978347a9d50b" class="block-color-teal_background toggle"><li><details open=""><summary>Collection</summary><ul id="799cd392-b4d1-465c-a254-da7ac33fcc11" class="toggle"><li><details open=""><summary>List</summary></details></li></ul><ul id="0d70dae6-fd79-4cc3-819b-b0a01a54dc01" class="toggle"><li><details open=""><summary>Set</summary></details></li></ul><ul id="e167cf29-ff2f-4db1-8594-6022df61f19a" class="toggle"><li><details open=""><summary>Collection Classes</summary><ul id="8ad5bc69-dd82-4c35-848f-91318177462d" class="bulleted-list"><li style="list-style-type:disc">AbstractCollection</li></ul><ul id="b63011b3-aedb-4903-a1cd-bb4056be4d83" class="bulleted-list"><li style="list-style-type:disc">AbstractList</li></ul><ul id="9687ea77-c515-4c4b-b86e-2e4bcf47c8ac" class="bulleted-list"><li style="list-style-type:disc">AbstractSequentialList</li></ul><ul id="43b99113-2fcd-45d7-91ba-1a1d33cdd980" class="bulleted-list"><li style="list-style-type:disc">AbstractSet</li></ul><ul id="1485f035-2971-412d-b02e-428fbcf9278e" class="bulleted-list"><li style="list-style-type:disc">LinkedList</li></ul><ul id="4fe54a5c-f16b-467a-9f86-929b311d0e3a" class="bulleted-list"><li style="list-style-type:disc">ArrayList</li></ul><ul id="cdcb2a9f-cf0c-4ae6-afed-b586e9381236" class="bulleted-list"><li style="list-style-type:disc">HashSet</li></ul><ul id="37e02fff-0922-42a7-bb3f-fe0779f00c66" class="bulleted-list"><li style="list-style-type:disc">LinkedHashSet</li></ul><ul id="d432f537-7906-456d-ad3d-36728dbf648f" class="bulleted-list"><li style="list-style-type:disc">TreeSet</li></ul></details></li></ul><ul id="297f0ef1-0bc1-4e57-b39b-58ade3612fa5" class="toggle"><li><details open=""><summary>Map</summary><ul id="f0063417-403d-4dd1-a8e3-fc9dbf15555c" class="toggle"><li><details open=""><summary>Interfaces</summary><ul id="4d4e519f-1249-4d78-8aa0-e2dcd110e21a" class="bulleted-list"><li style="list-style-type:disc">Map</li></ul><ul id="511473a2-5983-4015-b79d-e32b840324d7" class="bulleted-list"><li style="list-style-type:disc">Map.Entry</li></ul><ul id="f02d22c0-3d1f-43b7-9263-f9df9cc4d58d" class="bulleted-list"><li style="list-style-type:disc">SortedMap</li></ul></details></li></ul><ul id="49c02d36-3a2a-42bd-983a-97fc86752dda" class="toggle"><li><details open=""><summary>Classes</summary><ul id="7cc82e8b-3e63-4858-8204-d7dacdab90b9" class="bulleted-list"><li style="list-style-type:disc">AbstractMap</li></ul><ul id="36f57473-abe3-4a5e-bc45-9c7d2abb6e83" class="bulleted-list"><li style="list-style-type:disc">HashMap</li></ul><ul id="3c9cca3d-b931-4086-842d-a90a5fce88ae" class="bulleted-list"><li style="list-style-type:disc">LinkedListHashMap</li></ul><ul id="fc009797-e1cb-4c17-b7b3-cc8c779bc14e" class="bulleted-list"><li style="list-style-type:disc">TreeMap</li></ul></details></li></ul></details></li></ul><ul id="3a700672-4ca2-460b-9c47-453d1ccf326a" class="toggle"><li><details open=""><summary>Legacy Classes</summary><ul id="b21d0e0f-4009-4937-b64c-c125304caf2a" class="bulleted-list"><li style="list-style-type:disc">Vector</li></ul><ul id="0b8bdfbd-c0bf-4f99-a063-0c34248aa5a5" class="bulleted-list"><li style="list-style-type:disc">Stack</li></ul><ul id="d5ae0ad8-c5c3-49fb-b290-616270d0e0ca" class="bulleted-list"><li style="list-style-type:disc">Dictionary</li></ul><ul id="e43dbf67-f68c-4cc9-a18b-07f9972fcb67" class="bulleted-list"><li style="list-style-type:disc">Properties</li></ul><ul id="6410a9e7-421f-4855-a8e0-4a863b66df52" class="bulleted-list"><li style="list-style-type:disc">HashTable</li></ul></details></li></ul></details></li></ul><ul id="0616ab64-c5e6-4033-9321-a563d77ad6da" class="block-color-teal_background toggle"><li><details open=""><summary>Java I/O</summary><ul id="c1487c62-05c7-4761-aea9-e029a8059804" class="toggle"><li><details open=""><summary>ByteStream</summary><ul id="249d9e49-31cc-4a0a-8959-e845cf76b9b4" class="toggle"><li><details open=""><summary>InputStream</summary><ul id="6ff9342e-9f61-4535-ab5d-8775511a051b" class="toggle"><li><details open=""><summary>Methods</summary><ul id="abcca167-eb85-4a62-a004-30f472f174b2" class="bulleted-list"><li style="list-style-type:disc">available()</li></ul><ul id="a8a5de2a-5e19-45e7-9db5-08d791912705" class="bulleted-list"><li style="list-style-type:disc">close()</li></ul><ul id="3a4f87ad-d5e5-4681-b466-c73d49981d2e" class="bulleted-list"><li style="list-style-type:disc">markSupported()</li></ul><ul id="1504cae7-78d7-445d-9510-01ce12fededf" class="bulleted-list"><li style="list-style-type:disc">read()</li></ul><ul id="ca60e756-234d-408a-99fb-b8e99c0ca7ec" class="bulleted-list"><li style="list-style-type:disc">read(byte [] b)</li></ul><ul id="ee75cf50-41de-46d7-a4d0-0770839f0898" class="bulleted-list"><li style="list-style-type:disc">read(byte [] b, int offset, int len)</li></ul></details></li></ul><ul id="6094a724-1151-4c74-aa76-fee0d0e23fd0" class="toggle"><li><details open=""><summary>Classes</summary><ul id="9f591ce0-129e-45fd-b717-6e59afa85dc4" class="bulleted-list"><li style="list-style-type:disc">InputStream</li></ul><ul id="0813aadb-4271-4e1d-920b-3fec3b4ea382" class="bulleted-list"><li style="list-style-type:disc">BufferedInputStream</li></ul><ul id="ff7d7c1a-d5f8-4aa8-bba9-70763237d589" class="bulleted-list"><li style="list-style-type:disc">DataInputStream</li></ul><ul id="ef7c8b04-5719-4e70-adf2-75f8acdceb92" class="bulleted-list"><li style="list-style-type:disc">FileInputStream</li></ul><ul id="5d2382d4-0058-46a9-ac51-b82722e4a3ac" class="bulleted-list"><li style="list-style-type:disc">SequenceInputStream</li></ul><ul id="0ed7de35-f990-4266-afda-8d7fce6fdb54" class="bulleted-list"><li style="list-style-type:disc">ObjectInputStream</li></ul></details></li></ul></details></li></ul><ul id="86e78dca-3aba-4d45-8788-488347cceb80" class="toggle"><li><details open=""><summary>OutputStream</summary><ul id="0fa20db9-843b-4806-b174-e453323e14d0" class="toggle"><li><details open=""><summary>Methods</summary><ul id="e372db82-8e98-4fd7-9a6d-e15d4330e7d6" class="bulleted-list"><li style="list-style-type:disc">write(int a)</li></ul><ul id="ed916827-e0ac-4013-9df4-7fddd1b4ba74" class="bulleted-list"><li style="list-style-type:disc">write(byte [] b)</li></ul><ul id="4786675f-94ab-4fa5-82af-a81763fc4350" class="bulleted-list"><li style="list-style-type:disc">write(byte [] b, int offset, int len)</li></ul><ul id="ee611dc9-03cc-4f88-88f4-7f083fe49f7f" class="bulleted-list"><li style="list-style-type:disc">close()</li></ul><ul id="901049cf-b0ed-406e-a6da-54a1e9f099e7" class="bulleted-list"><li style="list-style-type:disc">flush()</li></ul></details></li></ul><ul id="8d29bd8a-4417-4be8-ab68-7f21ac6615fc" class="toggle"><li><details open=""><summary>Classes</summary><ul id="339e84ae-b224-46d3-9897-96fe767d1013" class="bulleted-list"><li style="list-style-type:disc">OutputStream</li></ul><ul id="ab1e493b-5584-4666-9220-af0533972055" class="bulleted-list"><li style="list-style-type:disc">BufferedOutputStream</li></ul><ul id="1b0e5f9e-2e07-4fdb-bfbd-889bbcf3569b" class="bulleted-list"><li style="list-style-type:disc">FileOutputStream</li></ul><ul id="6f3e8f18-3354-48e9-8df7-d71856779231" class="bulleted-list"><li style="list-style-type:disc">DataOutputStream</li></ul><ul id="7e3ff0bc-65c6-427d-a832-75adc302a7a9" class="bulleted-list"><li style="list-style-type:disc">ObjectObjectStream</li></ul><ul id="6992aa5b-a955-4fd8-826d-5514e75cc64c" class="bulleted-list"><li style="list-style-type:disc">PrintStream</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="bcf40364-47eb-47c5-b97f-eb6e68382b56" class="toggle"><li><details open=""><summary>CharacterStream</summary><ul id="fa82a1ea-1134-47b4-abd5-47fb15984c23" class="toggle"><li><details open=""><summary>Reader</summary><ul id="6b751142-e985-4cea-b65e-51ce4661588c" class="toggle"><li><details open=""><summary>Methods</summary><ul id="33e2eb65-d833-4f73-8f0e-46906f3a9364" class="bulleted-list"><li style="list-style-type:disc">read()</li></ul><ul id="98f35529-b647-4064-aa54-20bb2a80ea01" class="bulleted-list"><li style="list-style-type:disc">read(char [] c)</li></ul><ul id="b5253874-5e02-4207-88e7-f3be3f50e532" class="bulleted-list"><li style="list-style-type:disc">read(char [] c, int off, int len)</li></ul></details></li></ul><ul id="1ce1e329-5bf1-4044-a02e-43b6e51a6048" class="toggle"><li><details open=""><summary>Classes</summary><ul id="95a401e5-1622-4cbe-a03d-1f6102c27d24" class="bulleted-list"><li style="list-style-type:disc">Reader</li></ul><ul id="ffc088ac-bd7e-4a35-9eb7-915d43c06b5d" class="bulleted-list"><li style="list-style-type:disc">FileReader</li></ul><ul id="90f2217e-dcdc-4fed-bef0-521417f47620" class="bulleted-list"><li style="list-style-type:disc">BufferedReader</li></ul><ul id="ee835032-4e35-451d-8f45-defef1a6250e" class="bulleted-list"><li style="list-style-type:disc">InputStreamReader</li></ul></details></li></ul></details></li></ul><ul id="3f288e22-dfef-4290-842c-c98163a0b410" class="toggle"><li><details open=""><summary>Writer</summary><ul id="075d877e-ef50-44c1-ba17-9b1071a48df9" class="toggle"><li><details open=""><summary>Methods</summary><ul id="604a5c64-7fc3-4663-adb4-daf2d168b7b5" class="bulleted-list"><li style="list-style-type:disc">write(char a)</li></ul><ul id="ac243954-cec2-46c4-a2e4-70b9aa741563" class="bulleted-list"><li style="list-style-type:disc">write(char [] b)</li></ul><ul id="078ca14f-204a-41ec-90c9-2af3c301f1a4" class="bulleted-list"><li style="list-style-type:disc">write(char [] b, int offset, int len)</li></ul></details></li></ul><ul id="5bb84547-5086-4a73-9c14-2f690d44f256" class="toggle"><li><details open=""><summary>Classes</summary><ul id="ca4e669d-9acf-468c-a111-b56ceedea00d" class="bulleted-list"><li style="list-style-type:disc">Writer</li></ul><ul id="43d0ecdf-b610-4c6b-ab94-a49b5c5972ce" class="bulleted-list"><li style="list-style-type:disc">BufferedWriter</li></ul><ul id="8b7458ff-e41e-4851-bcb2-25fea1dbbd3e" class="bulleted-list"><li style="list-style-type:disc">FileWriter</li></ul><ul id="c5db5aef-4e14-4dbc-9969-ba67d35f198f" class="bulleted-list"><li style="list-style-type:disc">OutputStreamWriter</li></ul><ul id="9704f370-db1a-43c2-8e96-1b61eaf32a78" class="bulleted-list"><li style="list-style-type:disc">PrintStream</li></ul></details></li></ul></details></li></ul></details></li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="dc95581f-d69f-413c-99d8-b5be9a903ba6"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Java_Week_12_-_2104_to_2804.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/6ed77380-daa3-4aeb-aaf6-7cfe29ea4d26/Java_Week_12_-_2104_to_2804.pdf</a></div></figure></div></details></div></details><p id="081472e6-8464-440e-ae08-b1af202e0d57" class="">
+</p></div></details></div><p id="8c89cb54-ba87-40ff-9564-5a37c4d25644" class="">
+</p><p id="850a3616-bb53-484c-8235-af5d5154d3f9" class="">
+</p><hr id="f118ab30-65ea-4924-b95b-860d26ebc93d"/><p id="f30dc2c3-aa24-4de1-a7d2-1a22e7fed994" class="">
+</p><div><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">DBMS</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 1 - 01/02 to 08/02</summary><div class="indented"><ul id="c881eb14-57c0-4e77-b8e0-3bb71003ac58" class="toggle"><li><details open=""><summary>Main Components &amp; Features of DBMS</summary></details></li></ul><ul id="be32d426-e28d-4fe1-ac30-1555525cd195" class="toggle"><li><details open=""><summary>DBMS v/s File System</summary></details></li></ul><ul id="ae53a7e8-0294-41ac-9145-544abbe6dc42" class="toggle"><li><details open=""><summary>3-Layer Architecture</summary></details></li></ul><ul id="331f9539-d561-401b-b1a2-8fdf55fa6f61" class="toggle"><li><details open=""><summary>Data Independency</summary><ul id="0a8b850e-e236-4560-a580-5655f5a23394" class="bulleted-list"><li style="list-style-type:disc">Physical Data Independency</li></ul><ul id="7b79e0b4-890d-4e77-a9a8-7697c8a5f656" class="bulleted-list"><li style="list-style-type:disc">Logical Data Independency</li></ul></details></li></ul><ul id="e6a9584f-837e-43d9-abb9-9d093e402b39" class="toggle"><li><details open=""><summary>Data Users</summary><ul id="c49a419e-9835-499a-ad51-0d6efb3f1f5c" class="bulleted-list"><li style="list-style-type:disc">Naive Users</li></ul><ul id="27f68428-b6ec-4970-85e7-9a7036c03052" class="bulleted-list"><li style="list-style-type:disc">Application Programmer</li></ul><ul id="3ba2034c-cb37-47a9-a810-1d2b16956c68" class="bulleted-list"><li style="list-style-type:disc">Sophisticated Users</li></ul><ul id="bfb116b6-6665-4bbc-87a4-3995f50c310d" class="bulleted-list"><li style="list-style-type:disc">Specialised Users </li></ul></details></li></ul><ul id="c7b392a6-f8e9-4442-a2f3-b234107545a6" class="toggle"><li><details open=""><summary>Works of DBA</summary></details></li></ul><ul id="ed350d04-85db-4d9c-a170-7470fc4b2111" class="toggle"><li><details open=""><summary>Schema</summary><p id="95d50c69-b178-49f4-84f5-f50316ef3534" class="">Schema &amp; Instance</p></details></li></ul><ul id="23181385-a63a-4672-b0ee-02f5fa2012ca" class="toggle"><li><details open=""><summary>Database Models</summary><ul id="1730795d-8bea-435b-9b67-5c29fe34f5b2" class="bulleted-list"><li style="list-style-type:disc">Hierarchical Database</li></ul><ul id="c2d05799-1235-4d70-9e75-564ad9c6b53c" class="bulleted-list"><li style="list-style-type:disc">Network Database</li></ul><ul id="c34776c7-1744-41a4-ba82-be236286e22c" class="bulleted-list"><li style="list-style-type:disc">Relational Database</li></ul><ul id="4139a868-5a79-4e15-b6cf-dfcaa53ddb36" class="bulleted-list"><li style="list-style-type:disc">Distributed Database</li></ul><ul id="cb5755bb-7701-490e-925d-2321859aaa32" class="bulleted-list"><li style="list-style-type:disc">Object Oriented Databse</li></ul></details></li></ul><ul id="680e8457-82cd-4ae3-8831-348b72c72de3" class="toggle"><li><details open=""><summary>E-R Diagrams</summary><ul id="79d892d4-c12d-4a4e-a256-e012347e5a53" class="bulleted-list"><li style="list-style-type:disc">Entity, Entity Type, Entity Set, Domain</li></ul><ul id="6ff72b51-3b3e-42a2-9170-c9e1fdc89013" class="toggle"><li><details open=""><summary>Types of Attributes</summary><ul id="42a147ae-faaa-41f9-be7b-194d29459534" class="bulleted-list"><li style="list-style-type:disc">Simple</li></ul><ul id="3bc70c04-1dba-4732-abf8-8fa199a53edd" class="bulleted-list"><li style="list-style-type:disc">Composite</li></ul><ul id="23216683-66ac-4142-aa6b-3d1e1b1161d6" class="bulleted-list"><li style="list-style-type:disc">Single Valued</li></ul><ul id="64d42789-fd8a-4e63-a77a-4f37b7e4768f" class="bulleted-list"><li style="list-style-type:disc">Multi Valued</li></ul><ul id="d3282d03-d509-4ff2-b540-d5599dcead8e" class="bulleted-list"><li style="list-style-type:disc">Stored</li></ul><ul id="e7519614-979d-42c5-8e0d-bbeeaeeeb36a" class="bulleted-list"><li style="list-style-type:disc">Derived</li></ul><ul id="09ed84e2-fd68-4b92-b300-4538079a8127" class="bulleted-list"><li style="list-style-type:disc">Null</li></ul><ul id="c9eb3f66-c106-456e-9e9e-b5826e6365de" class="bulleted-list"><li style="list-style-type:disc">Complex</li></ul></details></li></ul><ul id="53e0f248-c1bd-436f-be64-1e729aa76d98" class="toggle"><li><details open=""><summary>Keys</summary><ul id="b1caaa0e-4274-4f86-ba06-213a6857e45e" class="bulleted-list"><li style="list-style-type:disc">Super Key</li></ul><ul id="b3c538d3-b004-45f2-9648-a65247da16c8" class="bulleted-list"><li style="list-style-type:disc">Candidate Key</li></ul><ul id="c9770d99-c17a-474b-9398-0d12a22162d4" class="bulleted-list"><li style="list-style-type:disc">Primary Key</li></ul><ul id="717b06d5-7b57-4ad6-ac3b-ce543a2c0af7" class="bulleted-list"><li style="list-style-type:disc">Secondary Key</li></ul><ul id="6715473f-afea-42a8-83f5-44239d8100ef" class="bulleted-list"><li style="list-style-type:disc">Foreign Key</li></ul></details></li></ul><ul id="17ea0595-ccef-43b5-88ee-155330e65dfa" class="toggle"><li><details open=""><summary>E-R Notations</summary><ul id="a97af2ce-de0e-4a0b-a6b8-c0f054d165fb" class="toggle"><li><details open=""><summary>Rectangle</summary><ul id="c2c5181f-9409-419c-844b-ae571d097ce6" class="bulleted-list"><li style="list-style-type:disc">Single Rectangle</li></ul><ul id="74155676-7cb3-4278-86da-4242a4fce132" class="bulleted-list"><li style="list-style-type:disc">Double Rectangle</li></ul></details></li></ul><ul id="7c0dd3d0-1bf4-433b-ab81-d6e0e6561b54" class="toggle"><li><details open=""><summary>Diamond</summary><ul id="d622c475-2cb0-4622-9da9-f53a44cdc997" class="bulleted-list"><li style="list-style-type:disc">Single Diamond</li></ul><ul id="0fcc6b75-5066-40f4-8d0d-cb84c004a4f1" class="bulleted-list"><li style="list-style-type:disc">Double Diamond</li></ul></details></li></ul><ul id="db7b09a8-38d6-42ee-b0c2-e0d44ae4347f" class="toggle"><li><details open=""><summary>Ellipse</summary><ul id="ec5adee6-fc3a-4ff5-9fca-018ed9a44766" class="bulleted-list"><li style="list-style-type:disc">Simple Ellipse</li></ul><ul id="a6ce0bf8-ff72-4481-9be2-25b73dde354a" class="bulleted-list"><li style="list-style-type:disc">Ellipse with Underlined Attribute</li></ul><ul id="57242293-6629-4699-9968-8a70da6231db" class="bulleted-list"><li style="list-style-type:disc">Ellipse with Dashed Underline</li></ul><ul id="f4bbdb99-81e7-46ba-98a4-d68b039b64d7" class="bulleted-list"><li style="list-style-type:disc">Double Ellipse</li></ul><ul id="d95b7aa4-cc32-4566-9d48-e7df475a1c8d" class="bulleted-list"><li style="list-style-type:disc">Ellipse attached with Ellipse</li></ul><ul id="ca297932-b7ec-43a6-8692-24a0762319e6" class="bulleted-list"><li style="list-style-type:disc">Dashed Ellipse</li></ul></details></li></ul><ul id="bb236144-f9e4-4e95-b896-0d19b5090768" class="toggle"><li><details open=""><summary>Lines</summary><ul id="4c95159b-9621-4c7c-9dcc-365f47efa042" class="bulleted-list"><li style="list-style-type:disc">Single Line</li></ul><ul id="b3f16ace-e619-40fc-81f7-840bbe2b7ca1" class="bulleted-list"><li style="list-style-type:disc">Double Line</li></ul></details></li></ul></details></li></ul><ul id="4ecba527-726c-419b-bccc-fa4387f2be78" class="toggle"><li><details open=""><summary>Relationship Constraints</summary><ul id="87d6bb9a-8229-4c92-a9ed-b7fb40e8deac" class="bulleted-list"><li style="list-style-type:disc">Cardinality Ratio</li></ul><ul id="878ce739-2997-439e-80a9-dd46000c355e" class="bulleted-list"><li style="list-style-type:disc">Participation</li></ul></details></li></ul><ul id="ac86f86a-369b-4927-b8c9-224fde051968" class="toggle"><li><details open=""><summary>Transformation of E-R Diagrams to Tables</summary><ul id="28876662-0fd0-428c-b0fc-42c07fcb6aec" class="bulleted-list"><li style="list-style-type:disc">Strong Entity</li></ul><ul id="b82a083e-f46d-4ffc-85ec-5235fded44e5" class="bulleted-list"><li style="list-style-type:disc">Weak Entity</li></ul><ul id="d397c1db-b9cc-4150-825c-1a14771b52f1" class="toggle"><li><details open=""><summary>Relationship</summary><ul id="a68218c7-d895-4206-956d-1a16e0a6a6ea" class="bulleted-list"><li style="list-style-type:disc">One to One</li></ul><ul id="a7b3a5fa-339a-488b-b341-14341b846dfe" class="bulleted-list"><li style="list-style-type:disc">Many to One</li></ul><ul id="559f50f3-524a-4f83-b781-c06ce3fb6439" class="bulleted-list"><li style="list-style-type:disc">Many to Many</li></ul></details></li></ul><ul id="227a25de-c0bc-4410-bf34-236125b6efdd" class="bulleted-list"><li style="list-style-type:disc">Composite Attribute</li></ul><ul id="1b1d6fee-7cce-4237-8fb4-5d2f611b872a" class="bulleted-list"><li style="list-style-type:disc">Multivalued Attribute</li></ul></details></li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="4cac35be-dd6d-4fa5-b779-e3eb37346da8"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_02-02_to_08-.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/06f561b4-32e5-404c-b7a4-07218dcbd52f/DBMS_02-02_to_08-.pdf</a></div></figure><p id="4bd2e075-7a79-42e2-96cf-58cb61f3ca77" class="">
+</p><p id="fbd34439-bd5d-455e-8df9-63b87dffbab2" class="">
+</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 2 - 09/02 to 16/02</summary><div class="indented"><ul id="563c64db-a743-4b96-b2e1-6d86f6ed537e" class="toggle"><li><details open=""><summary>EF Codd Rules</summary></details></li></ul><ul id="180bcc2c-36ad-4468-a4da-0717a446e6ba" class="toggle"><li><details open=""><summary>SQL</summary><ul id="c62fb3d6-014f-4be2-bb59-a899761210c8" class="toggle"><li><details open=""><summary>History</summary></details></li></ul><ul id="0eb7e226-8138-468e-b252-a41cf1cd2858" class="toggle"><li><details open=""><summary>Components of SQL</summary></details></li></ul><ul id="602f3d69-027e-47b0-81fd-3794707ef344" class="toggle"><li><details open=""><summary>Database Languages</summary></details></li></ul><ul id="e9774f82-e382-43e2-882d-5ac55b566161" class="toggle"><li><details open=""><summary>Query Process</summary></details></li></ul><ul id="25043fe0-b97d-41e3-aa6a-a27adb69745e" class="toggle"><li><details open=""><summary>Rule for Data Integrity</summary><ul id="7f33f2ff-7011-45df-b513-07ffbc890190" class="bulleted-list"><li style="list-style-type:disc">Entity Integrity</li></ul><ul id="47463590-3dce-4626-8d56-c7f544089a1d" class="bulleted-list"><li style="list-style-type:disc">Domain Integrity</li></ul><ul id="b0e7b2ee-5a69-42b3-940a-164019a5f8f7" class="bulleted-list"><li style="list-style-type:disc">Referential Integrity</li></ul><ul id="2616c9ba-f03d-42ea-bd18-ae4b5177b91f" class="bulleted-list"><li style="list-style-type:disc">User Defined Integrity</li></ul></details></li></ul><ul id="8fea3fbb-908f-4c3e-9dfd-d3b9257c8b1e" class="toggle"><li><details open=""><summary>Commands for Database</summary><ul id="bde50470-f606-4732-8eef-830457dffc94" class="bulleted-list"><li style="list-style-type:disc">Create</li></ul><ul id="ff8350fa-2dd2-4026-9f7c-0e318586980b" class="bulleted-list"><li style="list-style-type:disc">Use</li></ul><ul id="61d17f9e-0a5c-451d-bd1f-c44adc3dbed9" class="bulleted-list"><li style="list-style-type:disc">Show</li></ul><ul id="7c83454d-7cb8-4f0f-979d-fdfc818d2000" class="bulleted-list"><li style="list-style-type:disc">Drop</li></ul></details></li></ul><ul id="43b8bf14-2d86-4c88-abe3-b4cb273915e5" class="toggle"><li><details open=""><summary>Datatypes</summary><ul id="e3761cab-9f8d-45ef-9f38-a1a08a84074c" class="bulleted-list"><li style="list-style-type:disc">Char</li></ul><ul id="63302ce7-b037-40c5-a6e6-a2e6626d5f84" class="bulleted-list"><li style="list-style-type:disc">Varchar</li></ul><ul id="c06390f5-8472-4a89-872e-3b132c8d2986" class="bulleted-list"><li style="list-style-type:disc">Int</li></ul><ul id="cb534daa-5c15-4ca2-92a3-f437644969f3" class="bulleted-list"><li style="list-style-type:disc">Smallint</li></ul><ul id="c116c939-d335-4f31-a13a-9936032cfb1a" class="bulleted-list"><li style="list-style-type:disc">Boolean</li></ul><ul id="5c3e3a9b-4dca-4e7c-a91c-7afbbddedda8" class="bulleted-list"><li style="list-style-type:disc">Real</li></ul><ul id="0c43f444-db6c-43cc-ab1b-ab7a21c518be" class="bulleted-list"><li style="list-style-type:disc">Double </li></ul><ul id="82b35684-9c13-44c4-9e77-5aa13c0f1613" class="bulleted-list"><li style="list-style-type:disc">Float</li></ul><ul id="509ad6c6-1b75-4fa8-b01b-089bc023b3ca" class="bulleted-list"><li style="list-style-type:disc">Numeri (p, d)</li></ul><ul id="470ecac3-eb01-4034-8042-f8fdda84155b" class="bulleted-list"><li style="list-style-type:disc">Date</li></ul><ul id="30848955-d739-4ab0-9dd5-270c7746d7d1" class="bulleted-list"><li style="list-style-type:disc">Time</li></ul><ul id="7d565805-9a52-460b-af7b-5ed5092c3c7e" class="bulleted-list"><li style="list-style-type:disc">Timestamp</li></ul></details></li></ul><ul id="32222daf-df3a-45b1-bf40-6f4e5d250687" class="toggle"><li><details open=""><summary>SQL Constraints</summary><ul id="d2f9b91d-da83-4d72-962e-8888e5b000b0" class="bulleted-list"><li style="list-style-type:disc">Not Null</li></ul><ul id="fdee2468-4347-4561-b407-65c6244794a7" class="bulleted-list"><li style="list-style-type:disc">Default</li></ul><ul id="5f97a34c-2142-4f5a-b806-def16bc0c393" class="bulleted-list"><li style="list-style-type:disc">Unique</li></ul><ul id="da954f36-3cb1-44d5-ab75-1151f6c93cb6" class="bulleted-list"><li style="list-style-type:disc">Primary Key</li></ul><ul id="0a4538e7-ff9c-4178-b7ca-6927a0db5fdf" class="bulleted-list"><li style="list-style-type:disc">Foreign Key</li></ul><ul id="acb95fb7-05d6-4a7e-8b63-14417288e9ce" class="bulleted-list"><li style="list-style-type:disc">Check</li></ul><ul id="c8a6808a-7850-4534-8dd8-cad7593367f3" class="bulleted-list"><li style="list-style-type:disc">Index</li></ul></details></li></ul><ul id="386bad66-eb18-4d40-b5c9-255d263e74d1" class="toggle"><li><details open=""><summary>Commands for Table</summary><ul id="6cc54c53-0c7b-491b-a209-b7b827af4295" class="bulleted-list"><li style="list-style-type:disc">Creation</li></ul><ul id="83487595-1475-41e1-8919-87244d04b3c8" class="bulleted-list"><li style="list-style-type:disc">Insert</li></ul><ul id="fae16235-04fe-406a-95a5-d91d2af3dc86" class="bulleted-list"><li style="list-style-type:disc">Alter</li></ul><ul id="facc351e-c1d7-440c-b7cd-f733b417243e" class="bulleted-list"><li style="list-style-type:disc">Drop</li></ul><ul id="880da603-ccf8-41b8-8b1f-1a67c7ace966" class="bulleted-list"><li style="list-style-type:disc">Delete</li></ul><ul id="34e83682-86f5-44d7-83f0-919fe731ebeb" class="bulleted-list"><li style="list-style-type:disc">Select</li></ul><p id="e6479e76-7cc0-45e1-9823-13f30d52cd87" class="">
+</p></details></li></ul><p id="1f6e0a51-0677-4627-8925-9fdf13b941d4" class="">
+</p></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="af00360d-5f9d-4ba3-9d47-a99dfeff984f"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_0902_to_1602_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/f56cf030-79d3-48b4-b7b1-7bd1e8df34e6/DBMS_-_0902_to_1602_compressed.pdf</a></div></figure><p id="695de02b-4aac-41fc-9e9c-39db666cfcc4" class="">
+</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 3 - 19/02 to 23/02</summary><div class="indented"><ul id="56029cc9-2b48-4fe3-b41b-e48c0c2d67a3" class="bulleted-list"><li style="list-style-type:disc">is Null &amp; is not Null</li></ul><ul id="268e7325-d0b7-4b4f-84ae-64519591a1d8" class="toggle"><li><details open=""><summary>Like Clause</summary><ul id="db1c88ac-5dc0-4136-8a3e-7ce8d4f1de9f" class="bulleted-list"><li style="list-style-type:disc">Wildcard characters</li></ul></details></li></ul><ul id="f107c61b-b887-455d-8d32-3ee3710dbb68" class="toggle"><li><details open=""><summary>Cartesian Product</summary></details></li></ul><ul id="30c30f28-c1d2-4630-95d3-6b4cc149ffeb" class="toggle"><li><details open=""><summary>Order By clause</summary></details></li></ul><ul id="58bd1050-d395-48c8-bc58-c70f0b6601c8" class="toggle"><li><details open=""><summary>Aggregate Function</summary><ul id="56a93d89-65f4-4a1a-b504-75f567939da7" class="bulleted-list"><li style="list-style-type:disc">max()</li></ul><ul id="0b309dd3-7657-4a54-9cf3-425eecb459de" class="bulleted-list"><li style="list-style-type:disc">min()</li></ul><ul id="b6464159-34fb-4297-9c4d-daa769f5e0b7" class="bulleted-list"><li style="list-style-type:disc">sum()</li></ul><ul id="8a082304-d848-44eb-ae13-f6e3021d8db2" class="bulleted-list"><li style="list-style-type:disc">avg()</li></ul><ul id="3dc72c21-78f8-4ff2-ae35-b2efa22396ce" class="bulleted-list"><li style="list-style-type:disc">count()</li></ul><p id="52da91ff-9d9f-4bfc-8b31-50ede37ee934" class="">
+</p></details></li></ul><ul id="f0fce31a-93eb-4a68-84f3-cc2768439bb3" class="toggle"><li><details open=""><summary>Group By</summary></details></li></ul><ul id="9139e740-7767-4d03-b1a6-3c762a76544f" class="toggle"><li><details open=""><summary>Joins</summary><ul id="781335f1-4d39-4a35-9c79-db7814e7f738" class="bulleted-list"><li style="list-style-type:disc">Inner Join</li></ul><ul id="bcf2ddd6-683b-4ec4-b858-7384be90dae4" class="bulleted-list"><li style="list-style-type:disc">Left Outer Join</li></ul><ul id="e3ce4164-2c06-44dd-9021-30df9a186973" class="bulleted-list"><li style="list-style-type:disc">Right Outer Join</li></ul><ul id="1a4c510a-02f7-476c-a093-744470d09232" class="bulleted-list"><li style="list-style-type:disc">Full Outer Join</li></ul></details></li></ul><ul id="5a7fcefd-b73b-4429-9018-370f05e89f11" class="toggle"><li><details open=""><summary>IN and NOT IN</summary></details></li></ul><ul id="010f6468-8ad2-4346-b75d-26ea2e03388d" class="toggle"><li><details open=""><summary>Set Comparison </summary></details></li></ul><ul id="3688e220-28f5-4527-8a83-a81d8b60cf53" class="toggle"><li><details open=""><summary>SQL Commands (Chart)</summary><ul id="3f5f4abe-50ab-444e-9901-584a3480c4ac" class="toggle"><li><details open=""><summary>DDL</summary><ul id="2f5bdc0e-a4bf-40ab-9b23-a63764b2da49" class="bulleted-list"><li style="list-style-type:disc">Create</li></ul><ul id="7de3094c-d00f-4ef7-96b1-6a4345b0cb19" class="bulleted-list"><li style="list-style-type:disc">Drop</li></ul><ul id="ad135181-c9cd-4775-893d-d57ea2fceeec" class="bulleted-list"><li style="list-style-type:disc">Alter</li></ul><ul id="e5939701-ef12-4b19-9664-3e4c7e0f4673" class="bulleted-list"><li style="list-style-type:disc">Truncate</li></ul></details></li></ul><ul id="c1aed320-4396-4ca3-bf4a-7a45137e0822" class="toggle"><li><details open=""><summary>DML</summary><ul id="0d0209bd-845b-4d5a-ae58-781226514195" class="bulleted-list"><li style="list-style-type:disc">Insert</li></ul><ul id="f8bf74c0-159b-46c7-8954-4ff95701faf9" class="bulleted-list"><li style="list-style-type:disc">Update</li></ul><ul id="a7bfcd95-e8f6-4564-92b6-ecfcdec58c80" class="bulleted-list"><li style="list-style-type:disc">Delete</li></ul></details></li></ul><ul id="f9eafe35-0a04-4427-9125-b2c36e08d76b" class="toggle"><li><details open=""><summary>TCL</summary><ul id="8c7c7202-a1e6-4a73-9c3f-4ae5673fea82" class="bulleted-list"><li style="list-style-type:disc">Commit</li></ul><ul id="2c83f6e7-61e0-47b6-b53a-8331f638550b" class="bulleted-list"><li style="list-style-type:disc">Savepoint</li></ul><ul id="fe4ac91b-9624-4c26-9818-f21f934f6e8c" class="bulleted-list"><li style="list-style-type:disc">Rollback</li></ul></details></li></ul><ul id="82184206-b823-4185-b569-ce14c585a274" class="toggle"><li><details open=""><summary>DCL</summary><ul id="21cc192b-df5d-46a2-8b41-9c3ee114e756" class="bulleted-list"><li style="list-style-type:disc">Grant</li></ul><ul id="607f492d-cc6a-4dfd-bfb9-8fe7efeaeab6" class="bulleted-list"><li style="list-style-type:disc">Revoke</li></ul></details></li></ul><ul id="b2aff96c-38d5-4bf5-9321-1d832436a4b3" class="toggle"><li><details open=""><summary>DQL</summary><ul id="67b4f96c-e281-4823-a30b-60a11028a418" class="bulleted-list"><li style="list-style-type:disc">Select</li></ul></details></li></ul><ul id="517530d5-c1e7-4dcb-abde-977be21cc8ec" class="toggle"><li><details open=""><summary>SDL</summary></details></li></ul></details></li></ul><ul id="3fb234c0-f6b6-4415-8a12-1aeb78bb4b56" class="toggle"><li><details open=""><summary>Between Clause</summary></details></li></ul><ul id="c6b5f024-f63d-4842-b432-7755113142d6" class="toggle"><li><details open=""><summary>Views</summary><ul id="bd3e1908-6f60-4baf-9353-7433be6fe79d" class="bulleted-list"><li style="list-style-type:disc">Updatable Views</li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="1beb6cf9-adf2-46c3-aa0c-35b4be4ecaa8"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_1902_to_2302_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/d4a307ce-a551-4795-bc6e-51b1205a25d5/DBMS_-_1902_to_2302_compressed.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 4 - 26/02 to 02/02</summary><div class="indented"><ul id="0abf467e-4d2b-4ccd-8af2-659b911e7faa" class="toggle"><li><details open=""><summary>Schemas</summary></details></li></ul><ul id="9d38d97c-7bf9-45a2-a010-c8ea6e4eca07" class="toggle"><li><details open=""><summary>Catalog</summary></details></li></ul><ul id="36ee39a8-a2b6-44a9-b270-b5db8503857a" class="toggle"><li><details open=""><summary>Correlated Queries</summary></details></li></ul><ul id="18688127-104c-4dcc-9bf7-0aca9ea80366" class="toggle"><li><details open=""><summary>Subqueries</summary></details></li></ul><ul id="b65a5540-b5ac-498b-933b-a17582a1bebf" class="toggle"><li><details open=""><summary>Triggers</summary></details></li></ul><ul id="54662498-d013-4abf-b1ea-1b8bc9ca5ef8" class="toggle"><li><details open=""><summary>Types of Trigger Calls</summary><ul id="232aae7f-f466-44de-9696-84cf346cd9e8" class="bulleted-list"><li style="list-style-type:disc">Before Insertion</li></ul><ul id="d47559e6-881f-415b-ac28-b5d60b6d6099" class="bulleted-list"><li style="list-style-type:disc">After Insertion</li></ul><ul id="37b8d67e-a0b3-45ae-a287-910312589222" class="bulleted-list"><li style="list-style-type:disc">Before Deletion</li></ul><ul id="faa699fc-42d5-41c3-962a-f900c5a4ad7a" class="bulleted-list"><li style="list-style-type:disc">After Deletion</li></ul><ul id="4bddd6fd-0d56-442c-b32b-bd85d28c004b" class="bulleted-list"><li style="list-style-type:disc">Before Updation</li></ul><ul id="c46e026b-aa03-4082-934e-a1c3eed86782" class="bulleted-list"><li style="list-style-type:disc">After Updation</li></ul></details></li></ul><ul id="d7f3ddaf-6d78-4725-803e-495a3764e11c" class="toggle"><li><details open=""><summary>Assertion</summary></details></li></ul><ul id="e625926a-5505-4da8-8f42-e1b6bb011c41" class="toggle"><li><details open=""><summary>SET Clauses</summary><ul id="d120cc71-a47d-4fe2-92fe-473dc4b9a41f" class="bulleted-list"><li style="list-style-type:disc">Union</li></ul><ul id="16d20bc3-b2d1-4453-ab36-f0eac657ed9d" class="bulleted-list"><li style="list-style-type:disc">Intersect</li></ul><ul id="aefa1952-d6d4-4b03-8d1a-e070a3d32eea" class="bulleted-list"><li style="list-style-type:disc">Except(minus)</li></ul></details></li></ul><ul id="eecaeb06-a584-4332-9ac9-140153b81120" class="toggle"><li><details open=""><summary>Relational Algebra</summary><ul id="280a29a4-6499-4163-8de7-6b28d01a8ff0" class="toggle"><li><details open=""><summary>Fundamental Queries</summary><ul id="01d65858-d8c6-4ea6-8d18-b4b72c793ce0" class="bulleted-list"><li style="list-style-type:disc">Selection</li></ul><ul id="82d955e4-4af4-4689-a9ea-3c33c9ac1b7e" class="bulleted-list"><li style="list-style-type:disc">Projection</li></ul><ul id="e60d45ff-f462-4f4e-976e-207ad64f1520" class="bulleted-list"><li style="list-style-type:disc">Union</li></ul><ul id="0cb1d768-b68a-4455-acb7-7e0db5b9d463" class="bulleted-list"><li style="list-style-type:disc">Set Difference</li></ul><ul id="1b6ebf67-68fc-469e-ab52-a875f189149d" class="bulleted-list"><li style="list-style-type:disc">Set Intersection</li></ul><ul id="44bc9818-ae38-452b-9e5d-d1170f00b6ae" class="bulleted-list"><li style="list-style-type:disc">Rename</li></ul><ul id="8de231cf-eba8-4ef8-9bff-23763bf5bfa5" class="bulleted-list"><li style="list-style-type:disc">Cartesian Product</li></ul><ul id="46bf8642-8704-491c-b26d-fd24f9b98a14" class="bulleted-list"><li style="list-style-type:disc">And </li></ul><ul id="27a85412-7aa3-4338-944b-2f9e1fafeeb8" class="bulleted-list"><li style="list-style-type:disc">OR</li></ul></details></li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="2da582a8-7687-4040-9f1d-3452136c5f17"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_2602_to_0203_compressed.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/6cf08b3d-d680-4c06-82e7-ee19fe9d01f4/DBMS_-_2602_to_0203_compressed.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 5 - 04/03 to 09/03</summary><div class="indented"><ul id="d376c473-ffe1-4b49-ba32-f2687263c809" class="toggle"><li><details open=""><summary>Relational Algebra</summary><ul id="9474123b-88a4-42b8-8c74-867f89a081af" class="bulleted-list"><li style="list-style-type:disc">Union</li></ul><ul id="63dade04-fa6c-4d2a-a2ce-35ec55ce2d78" class="bulleted-list"><li style="list-style-type:disc">Set-Difference</li></ul><ul id="9f455bb5-1a43-4074-99d5-0426398ab1dd" class="bulleted-list"><li style="list-style-type:disc">Cartesian Product</li></ul><ul id="4a0415f4-29a6-4ee1-b98c-bee5eadac2b0" class="bulleted-list"><li style="list-style-type:disc">Rename</li></ul></details></li></ul><ul id="43bc00cb-8295-4e9b-b239-57c1b700d941" class="toggle"><li><details open=""><summary>Additional Operations - Relational Algebra</summary><ul id="1408d9c8-2a8e-4a8a-8244-eeeb14ed3908" class="bulleted-list"><li style="list-style-type:disc">Intersection</li></ul><ul id="2c9872cc-c887-4d56-94cd-6c268820481d" class="bulleted-list"><li style="list-style-type:disc">Natural join</li></ul><ul id="5bfda06e-ec8b-4978-a19e-20735eea3ece" class="bulleted-list"><li style="list-style-type:disc">Division</li></ul></details></li></ul><ul id="f5b2573a-d17c-47e6-9bc9-a3a4d0b0cac0" class="toggle"><li><details open=""><summary>Extended Relational Algebra Operations</summary><ul id="7f382462-8bec-450c-a9bf-af1bfa93bc43" class="bulleted-list"><li style="list-style-type:disc">Aggregated Functions</li></ul><ul id="ec01a437-74f5-4006-b9bb-637e243b34b9" class="toggle"><li><details open=""><summary>Outer Joins</summary><ul id="8ab1173a-17b7-4c06-b434-e5e5a4547702" class="bulleted-list"><li style="list-style-type:disc">Left Outer Join</li></ul><ul id="a6027a2e-0a59-4095-a6a2-081294cfdf3b" class="bulleted-list"><li style="list-style-type:disc">Right Outer Join</li></ul><ul id="234d4e45-77d8-4b90-b1dd-c25308247691" class="bulleted-list"><li style="list-style-type:disc">Full Outer Join</li></ul></details></li></ul><ul id="e378d4a3-0db2-44ed-affa-575fb4011cf0" class="bulleted-list"><li style="list-style-type:disc">Operations with Null Values</li></ul><ul id="84da6366-97e3-4624-b7bb-b648e7dcb2d6" class="bulleted-list"><li style="list-style-type:disc">Boolean Logical Operations with Null Values</li></ul><ul id="8d024c03-c8d9-4ecd-a2b3-21e88706155d" class="toggle"><li><details open=""><summary>Assignment Operator</summary><ul id="3299813a-7fa7-4aae-8fff-02c7d0e4430a" class="bulleted-list"><li style="list-style-type:disc">Deletion</li></ul><ul id="2432428d-a5ca-48bd-a0fb-5f596685712a" class="bulleted-list"><li style="list-style-type:disc">Insertion</li></ul><ul id="358a9041-b3e9-4436-b1dc-6786dc3bd998" class="bulleted-list"><li style="list-style-type:disc">Updation</li></ul></details></li></ul></details></li></ul><ul id="ae252049-a9d5-44ff-81ea-0102cbdb0c57" class="toggle"><li><details open=""><summary>Database Design</summary><ul id="b20497eb-960e-433e-88ac-25b5943af9b5" class="toggle"><li><details open=""><summary>Normalisation</summary><ul id="9f85720f-b926-440c-8099-9fd2313176c5" class="toggle"><li><details open=""><summary>Functional Dependencies</summary><ul id="f1bf5b2e-214e-463a-9d0f-64d3622974d6" class="toggle"><li><details open=""><summary>Inference Rules</summary><ul id="98a026e5-5bf4-49e2-8e5b-70fe071f9d4d" class="bulleted-list"><li style="list-style-type:disc">Reflexive</li></ul><ul id="39c9e8cf-8daf-4d4e-a614-3e034c920434" class="bulleted-list"><li style="list-style-type:disc">Augmentation</li></ul><ul id="6fd30e51-8d3d-4668-a027-13bd3ee69dc8" class="bulleted-list"><li style="list-style-type:disc">Transitive</li></ul><ul id="57f406f8-534e-42a7-bae1-aa616a94694f" class="bulleted-list"><li style="list-style-type:disc">Armstrong Rule</li></ul><ul id="c28d3c15-bf24-45c7-9ba8-b3ea328042d7" class="bulleted-list"><li style="list-style-type:disc">Additive/ Union Rule</li></ul><ul id="f7dfed78-37b3-450b-be52-5d2630729dd5" class="bulleted-list"><li style="list-style-type:disc">Decomposition/ Productive Rule</li></ul><ul id="19795761-af90-46ed-9d9c-7dcbd8baded8" class="bulleted-list"><li style="list-style-type:disc">Pseudo Transitive Rule</li></ul></details></li></ul><ul id="89a60462-533f-4503-937d-469b06f90c24" class="bulleted-list"><li style="list-style-type:disc">Fully Functional Dependency</li></ul><ul id="3045e47e-cbf7-438f-bfa9-71e98fe68227" class="bulleted-list"><li style="list-style-type:disc">Partial Functional Dependency</li></ul><ul id="b59438ee-5e79-4bbc-8b1d-4111a1ff66c2" class="bulleted-list"><li style="list-style-type:disc">Prime Attributes</li></ul><ul id="cf09c4fa-f118-4bb1-a7c2-14d9f100361c" class="bulleted-list"><li style="list-style-type:disc">Trivial Dependency</li></ul><ul id="083385af-f334-4879-b1d3-a5b54ea5f0d6" class="bulleted-list"><li style="list-style-type:disc">Closure</li></ul></details></li></ul><ul id="0a08c6b2-c887-41e6-95d1-73fc8ba53389" class="toggle"><li><details open=""><summary>Questions related to FDs</summary></details></li></ul><p id="92fe01c8-5784-4a03-8c40-7139cd9c345a" class="">
+</p></details></li></ul></details></li></ul><p id="fd58094b-d4be-42bf-94d3-005786ea1171" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="537f6f03-419a-40b0-acf8-784197214c6d"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_Mar_4-9.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/3717f34e-d69b-456a-b290-191252d890cc/DBMS_Mar_4-9.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 6 - 11/03 to 16/03</summary><div class="indented"><ul id="c439caf0-afbc-4a13-b045-69520d38fc24" class="toggle"><li><details open=""><summary>Normalisation</summary></details></li></ul><ul id="599e7710-6c64-408b-a570-7b531e643e35" class="toggle"><li><details open=""><summary>1NF</summary></details></li></ul><ul id="d55df366-b7aa-4a71-9f92-fa38f60133ad" class="toggle"><li><details open=""><summary>2NF</summary></details></li></ul><ul id="f163cf80-c20d-4e35-9392-617145ef6920" class="toggle"><li><details open=""><summary>3NF</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="0a367f9b-bcea-4d31-ad4e-356cef2c6090"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_1103_to_1603.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/5d6b604d-f9a7-4e79-bd9f-a79e101c0981/DBMS_1103_to_1603.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 7 - 18/03 to 23/03</summary><div class="indented"><ul id="18f8c478-d1a4-4c6b-8b2c-0e0426ed92bc" class="toggle"><li><details open=""><summary>3NF Conversions</summary></details></li></ul><ul id="fe27670e-7f23-4280-9a4c-e50b95ab110b" class="toggle"><li><details open=""><summary>BCNF</summary></details></li></ul><ul id="222facc9-ab75-42b2-a132-d7cc86c04ac2" class="toggle"><li><details open=""><summary>Decomposition</summary><ul id="06683a1d-5a4f-4860-9905-6f2071cb062a" class="toggle"><li><details open=""><summary>Lossless Decomposition</summary></details></li></ul><ul id="f817e636-56f7-4046-8663-438b04a244c6" class="toggle"><li><details open=""><summary>Lossy Decomposition</summary></details></li></ul></details></li></ul><ul id="ef557304-aeee-4161-b63a-983459651024" class="toggle"><li><details open=""><summary>Dependency Preservation</summary></details></li></ul><ul id="b84b2814-2c37-4bd8-855f-acdfc53b2d9b" class="toggle"><li><details open=""><summary>Minimal Cover/Canonical Cover</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="4ad739c1-583d-4583-9317-f770bf5e2ca8"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_Week_7_Mar_18-23.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/60fdfff2-74c9-44d6-992f-dd1cc6bad1c4/DBMS_Week_7_Mar_18-23.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 8 - 25/03 to 30/03</summary><div class="indented"><ul id="79158b16-d091-400c-9ce7-0664970366be" class="toggle"><li><details open=""><summary>Super Keys</summary></details></li></ul><p id="f62d5416-8722-44b2-93ee-50de785a898e" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="5b2dfe73-b224-40db-b28c-4ef64b5722d1"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_2503_to_3003.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/58a6950d-6c98-4727-945e-1d75a114ae97/DBMS_-_2503_to_3003.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 9 - 01/04 to 05/04</summary><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9f3103ca-2125-4b67-b1b0-e1e4e0fef1c1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Revision Week</div></figure><p id="64049997-2891-4ab5-92cd-6b5f5831ba0f" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 10 - 07/04 to 13/04</summary><div class="indented"><ul id="fbb983cc-d1c7-4f15-a8c8-d18142723d51" class="toggle"><li><details open=""><summary>Minimal Cover</summary></details></li></ul><p id="5b84b168-ed3f-483b-a394-a1fea685f4c3" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="14bed310-30a4-4ad2-a561-f8ec37e5cd25"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_0704_to_1304.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/17ebeaf0-1945-4095-9f99-df2d5eedbfc2/DBMS_-_0704_to_1304.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 11 - 14/04 to 19/04</summary><div class="indented"><ul id="7c406f61-a101-4fd1-950b-2bf299866837" class="toggle"><li><details open=""><summary>4NF</summary></details></li></ul><ul id="f9496177-f344-4e9f-acc1-afcbcabc2d44" class="toggle"><li><details open=""><summary>5NF</summary></details></li></ul><ul id="caa59c98-8aab-476a-83b5-4c20f3060549" class="toggle"><li><details open=""><summary>Transaction</summary><ul id="8b582a16-b7c9-41ec-a3dc-3ff203d7c017" class="toggle"><li><details open=""><summary>Properties of Transaction</summary><ul id="3c996c6e-fa16-48d9-8f57-319aebfd9554" class="bulleted-list"><li style="list-style-type:disc">Atomicity</li></ul><ul id="e54c1525-dea0-4486-8e02-64093a3f7ee0" class="bulleted-list"><li style="list-style-type:disc">Consistency</li></ul><ul id="20a1703b-7377-4db1-8df4-ef101835b651" class="bulleted-list"><li style="list-style-type:disc">Isolation</li></ul><ul id="f124dfa7-b848-44ed-880b-ae422f7c482f" class="bulleted-list"><li style="list-style-type:disc">Durability</li></ul></details></li></ul><ul id="33bdb5f8-5391-4618-8570-8d670bd244fe" class="toggle"><li><details open=""><summary>Levels of Isolation</summary><ul id="1d25222f-e5bc-4f77-a320-aebf1e90c973" class="bulleted-list"><li style="list-style-type:disc">Lost Update</li></ul><ul id="bc250338-43f7-4618-96c4-cf4053ea4fce" class="bulleted-list"><li style="list-style-type:disc">Dirty Read</li></ul><ul id="8414476f-9584-48e0-9648-119e15335dcd" class="bulleted-list"><li style="list-style-type:disc">Non-Repeatable Read</li></ul><ul id="a9270413-cb2a-4bc9-9c16-7ac3186a5292" class="bulleted-list"><li style="list-style-type:disc">Phantons</li></ul></details></li></ul><ul id="8e8ee9c5-4d98-4eb2-bbb6-76ca7da24fe8" class="toggle"><li><details open=""><summary>States of Transaction</summary><ul id="2c34525e-f281-43a3-9c68-b6dee3a271ad" class="bulleted-list"><li style="list-style-type:disc">Active</li></ul><ul id="7248199a-4059-4668-93c8-093719be74ad" class="bulleted-list"><li style="list-style-type:disc">Partially Committed</li></ul><ul id="ef30b054-7861-4d0e-9b12-25c5e91a3f9a" class="bulleted-list"><li style="list-style-type:disc">Failed</li></ul><ul id="f459b4bd-a5cc-492c-ad17-632cc715f96c" class="bulleted-list"><li style="list-style-type:disc">Committed</li></ul><ul id="1c6d2b14-2703-4554-9d13-eaa333646b27" class="bulleted-list"><li style="list-style-type:disc">Terminate</li></ul></details></li></ul><ul id="cd64cd42-52ca-4d22-ae37-bc893f810081" class="toggle"><li><details open=""><summary>System log</summary></details></li></ul><ul id="2061f224-577b-4dfc-aa9a-1ecba0a34c8a" class="toggle"><li><details open=""><summary>Concurrent Execution</summary><ul id="d2264f71-cda8-493d-a48c-40e13dc6b227" class="toggle"><li><details open=""><summary>Schedule</summary><ul id="3604b3a0-0943-4c7d-9139-30ac98e3c824" class="toggle"><li><details open=""><summary>Serial Schedule</summary></details></li></ul><ul id="27b77900-d47b-4ea5-af9f-757b385908e0" class="toggle"><li><details open=""><summary>Non-Serial Schedule</summary><ul id="909d8bbd-d2e8-496e-8337-c43a45dec4ad" class="toggle"><li><details open=""><summary>Serializable</summary><ul id="63795c35-e12f-4460-9330-51a42919e1a6" class="toggle"><li><details open=""><summary>Conflict Serializability</summary><ul id="44759ce1-f3a1-4111-9395-a8490b140202" class="bulleted-list"><li style="list-style-type:disc">Conflict Equivalence</li></ul><ul id="1ebabd0e-2818-4b96-85d8-ab4a3fc7ff8a" class="bulleted-list"><li style="list-style-type:disc">Conflict Serializable</li></ul></details></li></ul><ul id="cd6b13c1-5e1b-4bb6-a616-1a46d855f215" class="toggle"><li><details open=""><summary>View Serializability</summary><ul id="999e81e8-d6b5-4c60-85f3-a22e24861a92" class="bulleted-list"><li style="list-style-type:disc">View Equivalence</li></ul><ul id="c0c68a0a-ebd9-4d69-9967-ecd704678a12" class="toggle"><li><details open=""><summary>View Serializable</summary><ul id="9898a170-5a80-4712-9286-8b6951917b04" class="bulleted-list"><li style="list-style-type:disc">Initial Read</li></ul><ul id="c870c5b8-ac8e-42de-a598-57b8cc531f2d" class="bulleted-list"><li style="list-style-type:disc">Updated Read</li></ul><ul id="34ff2166-3918-4a2d-bcea-da432fdd811d" class="bulleted-list"><li style="list-style-type:disc">Final-Write Operation</li></ul><ul id="37103953-db01-48ac-8ff0-79ce76c24574" class="bulleted-list"><li style="list-style-type:disc">Blind Write</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="8b43d7a7-0498-4d7e-9217-ababbd97d632" class="toggle"><li><details open=""><summary>Non-Serializable</summary></details></li></ul><ul id="1717101b-4a02-4558-96a1-a5e8bdfcbb90" class="toggle"><li><details open=""><summary>Categories</summary><ul id="75a9b267-b0d8-4a26-9768-68e9639b3bc1" class="bulleted-list"><li style="list-style-type:disc">Recoverable Schedule</li></ul><ul id="a2a026de-ac76-4bf4-b1b2-c4ddf9f7a778" class="bulleted-list"><li style="list-style-type:disc">Cascading Schedule</li></ul><ul id="51d24bb0-a23f-46e3-8740-88a83861110c" class="bulleted-list"><li style="list-style-type:disc">Strict Schedule</li></ul></details></li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="01717cdd-05dd-423d-90d4-8847d4e92cd1" class="toggle"><li><details open=""><summary>Management of ACID Properties</summary></details></li></ul></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Notes</strong></summary><div class="indented"><figure id="c49ca154-4bee-4d47-bcb2-f6c17b73e240"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_1404_to_1904.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/d0b28dba-5be8-474d-8670-e36d90d61da9/DBMS_-_1404_to_1904.pdf</a></div></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes - 19/04</summary><div class="indented"><figure id="eaae0e06-a998-4001-b305-cf85565e373b"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_-_1904.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/84ac969e-a236-4a2d-9d64-763e73a844de/DBMS_-_1904.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">DBMS Week 12 - 21/04 to 26/04</summary><div class="indented"><ul id="26b34593-f961-42e6-ae12-62e6e59797f4" class="toggle"><li><details open=""><summary>Concurrency Control</summary><ul id="0263d3b0-e2f6-4046-aa45-cfa6127e5be0" class="toggle"><li><details open=""><summary>Locks</summary><ul id="6950ff40-0850-4514-bd64-ac2d64893121" class="toggle"><li><details open=""><summary>Types</summary><ul id="6d4e8a5d-9b1c-407e-83d5-286a47b14158" class="bulleted-list"><li style="list-style-type:disc">Binary Lock</li></ul><ul id="1e9a9554-9f8c-43c3-befc-6545a0fb152f" class="bulleted-list"><li style="list-style-type:disc">Shared Lock</li></ul></details></li></ul><ul id="5aa909c0-d8b1-43f9-86eb-a0c2b3a28cf6" class="toggle"><li><details open=""><summary>Lock Table</summary></details></li></ul><ul id="0c75684f-aadd-4606-840a-1f40443d2847" class="toggle"><li><details open=""><summary>Conversion of Locks</summary></details></li></ul></details></li></ul><ul id="2634b306-e047-48d8-9852-ad506694050f" class="toggle"><li><details open=""><summary>Using Timestamps</summary></details></li></ul><ul id="198ef36b-0762-43e5-85f4-000cf7d51124" class="toggle"><li><details open=""><summary>Multiversion Concurrency Control</summary></details></li></ul><ul id="7f651dc1-f710-4737-bc81-9bca2f056de4" class="toggle"><li><details open=""><summary>Optimistic Concurrency Control</summary></details></li></ul><ul id="fa304127-7ddd-446f-98d0-598f2676acf4" class="toggle"><li><details open=""><summary>Protocol used for Serializing</summary><ul id="3a5720cb-cf92-4683-9362-b2cad4fda544" class="toggle"><li><details open=""><summary>2-Phase Locking</summary><ul id="af4593b4-2f65-417f-9b4c-9cc5c10f3c18" class="bulleted-list"><li style="list-style-type:disc">Basic 2-phase locking</li></ul><ul id="3a22e60a-f845-4e95-b3de-b2dd144c080c" class="bulleted-list"><li style="list-style-type:disc">Conservative 2-phase locking</li></ul><ul id="a26ea72f-0928-4eaa-b45e-22d570095968" class="bulleted-list"><li style="list-style-type:disc">Strict 2-phase locking</li></ul><ul id="55e313df-f33e-4033-97d9-cab52a60bec2" class="bulleted-list"><li style="list-style-type:disc">Rigorous 2-phase locking</li></ul></details></li></ul><ul id="e74523c8-120f-43da-b9dd-3f6daf588c40" class="toggle"><li><details open=""><summary>Use of Timestamp</summary><ul id="0fa0738a-9e7b-46f4-a01b-87dc712f7927" class="bulleted-list"><li style="list-style-type:disc">Timestamp Ordering</li></ul><ul id="a0dc90b0-ea3c-4217-b597-1c0dd1f32702" class="bulleted-list"><li style="list-style-type:disc">Basic Timestamp Algo</li></ul><ul id="6cf7757d-ce53-4906-b6f0-24d29fecb91f" class="bulleted-list"><li style="list-style-type:disc">Strict Timestamp</li></ul><ul id="1c2e0657-7e05-4df3-95bc-df8343201e47" class="bulleted-list"><li style="list-style-type:disc">Wait Die</li></ul><ul id="2c6a6e31-b9b6-4033-9ccc-7b33c6bfc18a" class="bulleted-list"><li style="list-style-type:disc">Wound Wait</li></ul></details></li></ul><ul id="61dddb42-9b15-4729-84ae-701c0e14b969" class="toggle"><li><details open=""><summary>Validation/Optimistic Concurrency Control</summary><ul id="45a42155-54f7-499a-bf0a-45bcbf9b19a9" class="bulleted-list"><li style="list-style-type:disc">Phases</li></ul><ul id="b2535eb2-0d28-4b22-9767-a6b7bcc2c406" class="bulleted-list"><li style="list-style-type:disc">Algorithm</li></ul></details></li></ul></details></li></ul><ul id="87f9f83e-0f55-4bc3-af37-7a9501c1bf62" class="toggle"><li><details open=""><summary>Deadlock</summary><ul id="f4f26043-59ac-470f-819b-6722964f1f43" class="bulleted-list"><li style="list-style-type:disc">Circular Wait</li></ul><ul id="118e18e8-e9ca-427f-aec0-4a9620a26a65" class="bulleted-list"><li style="list-style-type:disc">Mutual Execution</li></ul><ul id="a59e2f40-f5ab-4031-8f86-781dda5da707" class="bulleted-list"><li style="list-style-type:disc">Non-primitive</li></ul><ul id="2e2607d5-7971-4780-b5c2-57d4a1f28bb9" class="bulleted-list"><li style="list-style-type:disc">Deadlock Prevention</li></ul></details></li></ul><ul id="2f958c11-600e-4e84-aaa0-88db775bf478" class="toggle"><li><details open=""><summary>Multiple Granularity</summary><ul id="ce167360-eae5-490f-b21c-ddb1b1da59ff" class="toggle"><li><details open=""><summary>Types</summary><ul id="2f4a9948-f0ef-427f-8260-42ae5222eaf6" class="bulleted-list"><li style="list-style-type:disc">Coarse Granularity</li></ul><ul id="e72d9b00-9526-4d49-9b6b-4329fa2e2709" class="bulleted-list"><li style="list-style-type:disc">Fine Granularity</li></ul></details></li></ul><ul id="38850145-cf87-4247-9d6b-d5781f603497" class="toggle"><li><details open=""><summary>Locks in case of Granularity</summary><ul id="268ced68-f04c-41b1-abc2-8560319c23fb" class="bulleted-list"><li style="list-style-type:disc">Shared</li></ul><ul id="bca2ef99-1e10-460f-a191-4bfe438912e5" class="bulleted-list"><li style="list-style-type:disc">Exclusive</li></ul><ul id="c4100f81-0d09-4c22-923a-07bb923399a1" class="bulleted-list"><li style="list-style-type:disc">Intension Shared (IS)</li></ul><ul id="04121cd9-1043-4d5c-b17a-c146a23c74c0" class="bulleted-list"><li style="list-style-type:disc">Intension Exclusive (IX)</li></ul><ul id="0a31c29f-2e93-40a9-8271-5e5cb3c12fb2" class="bulleted-list"><li style="list-style-type:disc">Shared Intension Exclusive (SIX)</li></ul></details></li></ul></details></li></ul></details></li></ul><p id="ffd38c38-8c2a-4502-9241-0a6849c7d9b3" class="">
+</p><ul id="330eaeec-32c4-454f-94d0-c64efa5b8704" class="bulleted-list"><li style="list-style-type:disc">Attributes for Cost Estimation</li></ul><ul id="72f01a07-f89f-44c5-aa54-55ad82db2483" class="toggle"><li><details open=""><summary>Query Processing</summary><ul id="87e9ffe6-fdac-4aab-9bd5-19019b7f9a9a" class="toggle"><li><details open=""><summary>Parsing &amp; Transaction</summary></details></li></ul><ul id="4995e367-0212-433e-a2ad-3c74eb91fc8f" class="toggle"><li><details open=""><summary>Optimization</summary></details></li></ul><ul id="0ce98222-7808-480a-b0b9-afd65032f628" class="toggle"><li><details open=""><summary>Evaluation</summary></details></li></ul><ul id="8bd1caec-8571-41e1-a101-5b688220cc62" class="toggle"><li><details open=""><summary>Equivalence Rules of Alternate Queries</summary></details></li></ul><ul id="df7cc5a9-16d8-4b7c-bb82-727788766f5e" class="toggle"><li><details open=""><summary>Attributes for Estimation of Cost</summary></details></li></ul></details></li></ul><p id="d03dc92f-0655-4a5a-bbc2-72189c05b083" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="40511cd2-b4c3-4671-95e5-0cf5e8dfcd28"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">21.4.2024: Topic 4NF was covered not included in notes.</div></figure><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="92a0a857-4be5-4ab2-9173-3e5d024d56f6"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/DBMS_Week_12_-_2104_to_2604.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/cafa8673-4d79-4e7c-904e-f06baa9b8022/DBMS_Week_12_-_2104_to_2604.pdf</a></div></figure></div></details></div></details></div></details></div><p id="1556884a-6329-4812-a7ec-10c29de0167a" class="">
+</p><p id="973861d0-771c-4af0-abc1-12b673cc9c1f" class="">
+</p><hr id="6a76de3c-47c5-4665-9e87-72175debd690"/><p id="3b021b95-9696-4f0e-9088-c37d3891adca" class="">
+</p><div><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Networking</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Networking Week 1 - 05/05</summary><div class="indented"><ul id="7050e938-8c8a-41f5-a041-e3200c6e566f" class="toggle"><li><details open=""><summary>Data Communication System</summary></details></li></ul><ul id="9810ea7c-c233-45d7-bc7e-500a4d40d033" class="toggle"><li><details open=""><summary>Fundamental Characteristics of DCS</summary><ul id="b4b16a4b-f04f-49ee-9f4a-d588c283f533" class="bulleted-list"><li style="list-style-type:disc">Accuracy</li></ul><ul id="dff3ebdd-5fe0-4f29-be9e-3e56a9b5c674" class="bulleted-list"><li style="list-style-type:disc">Timing</li></ul><ul id="54d1f5b1-2bd9-4264-986e-4c5d27d2a1e8" class="bulleted-list"><li style="list-style-type:disc">Delivery</li></ul><ul id="e8ec5c15-d47b-4c7b-89a2-64350b48cafa" class="bulleted-list"><li style="list-style-type:disc">Jitter</li></ul></details></li></ul><ul id="ad1b22aa-073b-4c82-b44a-8041bfefd127" class="toggle"><li><details open=""><summary>Components of DCS</summary><ul id="bb48b357-4824-4c24-a4b3-93876c0ea1d0" class="toggle"><li><details open=""><summary>Sender/Transmitter/Source</summary></details></li></ul><ul id="cff82072-bae6-4ea4-b637-26fffeca00f8" class="toggle"><li><details open=""><summary>Receiver/Sink/Destination</summary></details></li></ul><ul id="35fa74ad-eb80-4fc2-9370-1a30ba8404d2" class="toggle"><li><details open=""><summary>Transmission Media/Medium/Channel</summary><ul id="d2ef0bce-9205-493e-9f51-ef25faaa7083" class="toggle"><li><details open=""><summary>Wired/Guided/Bounded</summary><ul id="422204d7-969d-4541-ad8f-65b82f388895" class="toggle"><li><details open=""><summary>Twisted Pair</summary><ul id="7c641d1a-f13c-466a-9b0f-5aea15737bc4" class="bulleted-list"><li style="list-style-type:disc">Wires - Color</li></ul><ul id="ac8a40f3-58ba-4548-9d4e-ee083e3a807b" class="bulleted-list"><li style="list-style-type:disc">UTP - Unshielded Twisted Pair</li></ul><ul id="920ed782-6e56-4158-9615-e4df73de1482" class="bulleted-list"><li style="list-style-type:disc">STP - Shielded Twisted Pair</li></ul><ul id="d93a9234-264c-43f0-8366-d046e73279c7" class="bulleted-list"><li style="list-style-type:disc">ScTP - Screened Twisted Pair</li></ul></details></li></ul><ul id="a6f5c8cd-63a5-41a5-805d-bbef2f6651b2" class="bulleted-list"><li style="list-style-type:disc">Coaxial</li></ul><ul id="49b127b8-2d70-4a9c-938c-74d56ac3d940" class="bulleted-list"><li style="list-style-type:disc">Fiber Optics</li></ul></details></li></ul><ul id="6547ec43-5992-4c7f-896e-b9dbc773b485" class="toggle"><li><details open=""><summary>Wireless/Unguided/Unbounded</summary><ul id="ded26adb-d147-4ef5-a9d0-fc1fb63f7e61" class="bulleted-list"><li style="list-style-type:disc">Radio Waves</li></ul><ul id="524c2c3c-151f-4bf2-a1ee-2704935c051c" class="bulleted-list"><li style="list-style-type:disc">Infrared Waves</li></ul><ul id="57203057-1600-445b-9ff3-2ef5802372f5" class="bulleted-list"><li style="list-style-type:disc">Micro Waves</li></ul></details></li></ul></details></li></ul><ul id="fab4201e-4039-440d-bed0-a4bbac526b0d" class="toggle"><li><details open=""><summary>Message/PDU(Protocol Data Unit)</summary></details></li></ul><ul id="1972d7db-7544-406f-90ff-c3efab4f04ea" class="toggle"><li><details open=""><summary>Protocol</summary><ul id="37f94f71-1ba8-4fc8-a301-045edd1bd20a" class="bulleted-list"><li style="list-style-type:disc">Syntax</li></ul><ul id="cabc653c-90c0-49a3-8af5-eca80395d989" class="bulleted-list"><li style="list-style-type:disc">Semantics</li></ul><ul id="65146677-3ab3-4fd1-8a8a-6991599a55fd" class="bulleted-list"><li style="list-style-type:disc">Timing</li></ul></details></li></ul></details></li></ul><ul id="74ee5108-1e1c-4b86-9aca-6126d33d7374" class="toggle"><li><details open=""><summary>Transmission Mode/ Data Communication Mode/ Directional Mode</summary><ul id="b5b0f623-2bad-4260-adf6-495d0f72459b" class="toggle"><li><details open=""><summary>Simplex Mode</summary></details></li></ul><ul id="e1f47831-ed16-4460-abb7-e6d010b9a07a" class="toggle"><li><details open=""><summary>Half-Duplex Mode</summary><ul id="366a12ed-e4db-4ca1-a123-cb0f09afb260" class="toggle"><li><details open=""><summary>Examples</summary><ul id="e42b4769-24e3-4a97-a857-3bcd3a146746" class="bulleted-list"><li style="list-style-type:disc">Walkie-Talkie/ Hand Held Transeiver </li></ul><ul id="16c6396f-849f-4f36-9265-fc06214c3b50" class="bulleted-list"><li style="list-style-type:disc">Hub</li></ul><ul id="bc119322-dffc-4c26-845f-ff6218e9f3d2" class="bulleted-list"><li style="list-style-type:disc">Web Browsing</li></ul></details></li></ul></details></li></ul><ul id="5ed3c3f7-bea6-4ba2-922f-8bef1f218070" class="toggle"><li><details open=""><summary>Duplex/ Full Duplex Mode</summary><ul id="d5c12ec6-6bbd-4526-b03c-ee409bbbce89" class="toggle"><li><details open=""><summary>Example</summary><ul id="fff1f309-6345-4a5b-bd8c-5482bfce7b1d" class="bulleted-list"><li style="list-style-type:disc">Telephone </li></ul><ul id="0a5c8c86-9ffb-4b6b-be6f-f7e858283b44" class="bulleted-list"><li style="list-style-type:disc">Mobile Phone</li></ul><ul id="0368b86f-a58f-4949-9e7d-ca5ee99e7af0" class="bulleted-list"><li style="list-style-type:disc">TCP Connection</li></ul><ul id="d261afcc-8512-461b-b673-ecd2b0b28c07" class="bulleted-list"><li style="list-style-type:disc">RS 232</li></ul><p id="507906ba-d507-4623-a50e-c122c4dbbff2" class="">
+</p></details></li></ul></details></li></ul></details></li></ul><ul id="d95742fe-9e45-4c1d-ad30-9249601eca26" class="toggle"><li><details open=""><summary>Data Transmission</summary><ul id="9c3b72c5-24b9-4794-a3f5-c1240053da94" class="toggle"><li><details open=""><summary>Serial Transmission</summary><ul id="630b330c-ba00-4447-bf80-8e627fc1a2db" class="bulleted-list"><li style="list-style-type:disc">Synchronous Transmission</li></ul><ul id="71d7ead2-b5d3-4356-9f22-767a213bd7e0" class="bulleted-list"><li style="list-style-type:disc">Asynchronous Transmission</li></ul><ul id="2cee2af8-4c14-4e47-b9f7-9bab4fe67e19" class="bulleted-list"><li style="list-style-type:disc">Isochronous Transmission</li></ul></details></li></ul><ul id="6cc11af9-851f-43ed-8bb0-84adfc1c206d" class="toggle"><li><details open=""><summary>Parallel Transmission</summary></details></li></ul></details></li></ul><p id="3017666d-df20-400f-b2ab-9e31e0ec0120" class="">
+</p><p id="95528a1e-37c8-4151-a0d6-37a96b3d3f3c" class="">Extras:</p><ul id="bd707ba3-e32b-4e3c-baa8-cc6876750061" class="toggle"><li><details open=""><summary>OSI Model</summary></details></li></ul><ul id="e22a0614-480b-45eb-b49b-0dd93915135a" class="toggle"><li><details open=""><summary>RFC - Request for Comments (Related to Protocols)</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="619fe39f-b0f7-4fb4-a2ea-870bc829a819"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Networking_-_0505.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/e4312706-9020-4cc1-94c8-71c64cb1df57/Networking_-_0505.pdf</a></div></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Networking Week 2 - 11/05 - 12/05</summary><div class="indented"><ul id="249426a8-ccfd-4ade-b776-6e2cac756a34" class="toggle"><li><details open=""><summary>Line Configuration/Coding/Connection</summary><ul id="f1c8bb39-3503-4dd4-b8a4-982829a556dd" class="toggle"><li><details open=""><summary>Types</summary><ul id="1550e4a6-bbb7-4f27-aa09-30cfb9ba4d51" class="bulleted-list"><li style="list-style-type:disc">Point to Point Configuration<ul id="e1d0ed60-3f26-42f3-8239-365dc89e17d6" class="bulleted-list"><li style="list-style-type:circle">Peer to Peer Connection</li></ul></li></ul><ul id="293c957f-b97b-4f77-886c-4d5e36dc4299" class="bulleted-list"><li style="list-style-type:disc">Multi Point Configuration</li></ul></details></li></ul></details></li></ul><ul id="7fce8b73-9d2a-4ffe-8820-256c7ee4eb30" class="toggle"><li><details open=""><summary>Topology</summary><ul id="e538381f-e5e6-4a1f-8ea0-fc817fc4bb95" class="toggle"><li><details open=""><summary>Categories</summary><ul id="dec86baf-49ad-485a-a011-138c61177cf7" class="bulleted-list"><li style="list-style-type:disc">Physical Topology</li></ul><ul id="ffd0e95c-bf8e-40a8-8115-af8397411c8a" class="bulleted-list"><li style="list-style-type:disc">Logical Topology</li></ul></details></li></ul><ul id="eaac29d9-2c0b-4f55-85cf-af47201abd70" class="toggle"><li><details open=""><summary>Types</summary><ul id="7363db47-14ca-483e-ab84-79c852249145" class="toggle"><li><details open=""><summary>Mesh Topology</summary></details></li></ul><ul id="8af23203-d603-428b-a120-4704094e43d4" class="toggle"><li><details open=""><summary>Star Topology</summary></details></li></ul><ul id="30df534f-5c69-487c-9917-c65c74cfc029" class="toggle"><li><details open=""><summary>Ring Topology</summary><ul id="c9ad7f9d-efc8-4ac9-90f7-99bfac8b4eca" class="bulleted-list"><li style="list-style-type:disc">Token Passing Concept</li></ul><ul id="b02bc64d-fb27-429d-8bfb-a62c91e2b88c" class="bulleted-list"><li style="list-style-type:disc">FDDI - Fiber Distributed Data Interface</li></ul><ul id="d62cb862-0448-45a4-8482-a6d65fc1d2fa" class="bulleted-list"><li style="list-style-type:disc">Token Ring &amp; Token Bus</li></ul></details></li></ul><ul id="7c66297c-7be0-432d-ab27-63fcd5e2a077" class="toggle"><li><details open=""><summary>Bus Topology</summary><ul id="687a173b-33df-4a4c-a682-0360deedc59c" class="toggle"><li><details open=""><summary>Coaxial Cable</summary><ul id="a09e144d-31db-4400-a0e9-10c0ca1163b6" class="bulleted-list"><li style="list-style-type:disc">RG - 11</li></ul><ul id="57bbbccf-54e3-4735-aac3-8853bfc5202f" class="bulleted-list"><li style="list-style-type:disc">RG - 58</li></ul><ul id="aed6204e-8ce8-4575-8c1b-66b531df7823" class="bulleted-list"><li style="list-style-type:disc">RG - 59</li></ul></details></li></ul><ul id="6d829e9f-02f6-42d3-b19d-986fe0b67d51" class="toggle"><li><details open=""><summary>LAN</summary><ul id="9bba290f-4fea-49be-bf4d-e37a6b7b0c7c" class="bulleted-list"><li style="list-style-type:disc">Wired LAN/ Ethernet/ 802.3 - CSMA/CD</li></ul><ul id="94c255e6-ecba-455d-9f25-ffd759c0b8c0" class="bulleted-list"><li style="list-style-type:disc">Wireless LAN/ WLAN/ Wi-Fi/ 802.11 - CSMA/CA</li></ul></details></li></ul><p id="3d1a6b4b-f841-4e2b-97dd-2d6a80f7d867" class="">
+</p></details></li></ul><ul id="f49add53-8295-4992-bf52-85793a164567" class="toggle"><li><details open=""><summary>Tree/Hybrid Topology</summary></details></li></ul></details></li></ul></details></li></ul><p id="a7a99887-8b67-49e7-bb89-3f680049d53d" class="">
+</p><p id="175a69e2-98a1-4a2c-afe1-22e996857844" class="">
+</p><p id="587bf707-6c62-428f-8b9d-93fcbacf1134" class="">Extras:</p><ul id="13457fa4-1284-4fe2-b850-aafe4170dbcc" class="toggle"><li><details open=""><summary>Transmission Delay &amp; Propagation Delay</summary></details></li></ul><ul id="b0bdf0d0-4c57-44cb-b9ec-ec84814e6ac4" class="toggle"><li><details open=""><summary>Repeater, Bridge &amp; Gateway</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="26095137-a5e7-4a19-b096-fd613f5fb164"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/Networking_Week_2_-_1105_-_1205.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/227126ce-6b45-426d-bb1d-dd912b59bfc8/Networking_Week_2_-_1105_-_1205.pdf</a></div></figure></div></details></div></details><p id="d6c8efd7-e52e-4fed-9865-909d72732244" class="">
+</p><p id="a96e0469-e905-4414-bc19-611404a8a0b0" class="">
+</p></div></details></div><p id="7a29417e-3310-4302-b30c-0d055919037a" class="">
+</p><p id="cab14e70-385a-4e0c-b6a3-0200a79553fa" class="">
+</p><hr id="9c8cb26f-2bdb-4922-a7ef-5c60a12819dc"/><p id="8f478939-a737-4cde-a2bc-162c34dbffde" class="">
+</p><div><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">SAD</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">SAD Week 1 - 01/05 - 05/05</summary><div class="indented"><ul id="c57da323-c022-4053-9418-b0961a55912b" class="toggle"><li><details open=""><summary>System</summary></details></li></ul><ul id="7584b909-7570-42da-8899-62d919bb8dc3" class="toggle"><li><details open=""><summary>Subsystem</summary></details></li></ul><ul id="0a2ecd22-f049-406e-a53d-8014cabc9e74" class="toggle"><li><details open=""><summary>Types of Systems</summary><ul id="3921f35d-0b4d-4268-adc8-ab7e9e69e27d" class="bulleted-list"><li style="list-style-type:disc">Physical System</li></ul><ul id="83108589-0295-422d-b481-49af226cfcd0" class="bulleted-list"><li style="list-style-type:disc">Abstract System</li></ul><ul id="e8b4a81d-f985-4ef3-8866-c201b53e9bc2" class="bulleted-list"><li style="list-style-type:disc">Open System</li></ul><ul id="c679e585-dbbc-4505-bf7d-781095fa74ba" class="bulleted-list"><li style="list-style-type:disc">Close System</li></ul><ul id="65b2e626-4b16-4172-a3dd-a561801a2eba" class="bulleted-list"><li style="list-style-type:disc">Deterministic System</li></ul><ul id="5d5621d2-219b-4c6b-9f05-ded85833130f" class="bulleted-list"><li style="list-style-type:disc">Probabilistic System</li></ul><ul id="c75e34bf-efae-41df-ab4d-7941557efe45" class="bulleted-list"><li style="list-style-type:disc">Information System</li></ul><ul id="668ebb2d-97ba-4db2-bde1-a81b8978c717" class="bulleted-list"><li style="list-style-type:disc">Real Time System</li></ul><ul id="e8352569-554a-4c2e-86a3-1ae9211e0f13" class="bulleted-list"><li style="list-style-type:disc">Distributed Computing System</li></ul></details></li></ul><ul id="d332ff15-c591-4e6c-bdf6-6ddecd15d466" class="toggle"><li><details open=""><summary>Principle for Successful System</summary></details></li></ul><ul id="2c4d5013-0eac-43b2-9aa1-0b50be3e636c" class="toggle"><li><details open=""><summary>SDLC - System Development Life Cycle</summary><ul id="27ac0145-a14d-4db2-bb6f-f9a28304bb67" class="toggle"><li><details open=""><summary>3 Phases and 8 Stages</summary><ul id="da6ac710-dcee-4bf6-9f16-c4aacd638ad7" class="toggle"><li><details open=""><summary>Feasibility Study</summary><ul id="de5ddffb-69e9-4c03-a768-6b22f9c38728" class="bulleted-list"><li style="list-style-type:disc">Problem Definition</li></ul><ul id="3ea0dc6e-4d7b-4c9d-aa7d-15e7e4260a13" class="bulleted-list"><li style="list-style-type:disc">Project Identification</li></ul></details></li></ul><ul id="6a9e5850-f279-4fd7-a157-e4ee74320f50" class="toggle"><li><details open=""><summary>System Analysis</summary><ul id="d7d426a2-e5c8-41bc-a758-9ddf57b7c6d4" class="bulleted-list"><li style="list-style-type:disc">Operations &amp; problem analysis</li></ul><ul id="a7a53029-66a6-4425-8f3d-a577d342d6f5" class="bulleted-list"><li style="list-style-type:disc">Requirement Specification</li></ul><ul id="369c4988-d43e-4d74-aa2e-deb1e3777aec" class="bulleted-list"><li style="list-style-type:disc">Selection of Technical Solution</li></ul></details></li></ul><ul id="e093bb84-65da-44fd-81f1-6a65fab9a693" class="toggle"><li><details open=""><summary>System Design</summary><ul id="73ba4246-0289-4958-9dbc-3e1f692d8a44" class="bulleted-list"><li style="list-style-type:disc">Data Design</li></ul><ul id="66476b93-ce78-4360-8b41-be0902f4ed79" class="bulleted-list"><li style="list-style-type:disc">Process Design</li></ul><ul id="04212793-77dd-4f3c-8a9b-04f74894a413" class="bulleted-list"><li style="list-style-type:disc">Physical Design</li></ul></details></li></ul></details></li></ul><ul id="461ad46c-c1f7-4a87-96b8-7813da02f134" class="toggle"><li><details open=""><summary>8 Activities</summary><ul id="9257c159-0183-45bc-a135-8b2e2e00220b" class="bulleted-list"><li style="list-style-type:disc">Preliminary Identification</li></ul><ul id="29dd41a1-ad6d-4b44-868b-ee2e572a1a72" class="bulleted-list"><li style="list-style-type:disc">Feasibility Study</li></ul><ul id="6a9e3319-d139-4376-afef-7e492e245729" class="bulleted-list"><li style="list-style-type:disc">System Analysis</li></ul><ul id="1e80fe89-e8bc-43a5-af11-feac72296bfe" class="bulleted-list"><li style="list-style-type:disc">System Design</li></ul><ul id="0bc6fd5c-64a8-4767-84e0-2acb959756a4" class="bulleted-list"><li style="list-style-type:disc">Development of the System</li></ul><ul id="c92b0cf4-d14f-4ac8-a90d-f4698ca76e24" class="bulleted-list"><li style="list-style-type:disc">Testing</li></ul><ul id="5fb60244-7189-4587-8df6-daa9cc2dad2c" class="bulleted-list"><li style="list-style-type:disc">Implementation and Evaluation</li></ul><ul id="0fc4f186-26cf-4258-9d24-be355f50c0fc" class="bulleted-list"><li style="list-style-type:disc">Maintenance</li></ul></details></li></ul></details></li></ul><ul id="6257611d-2d4e-4677-b908-aa76c1d7e343" class="toggle"><li><details open=""><summary>System Analyst &amp; its Attributes</summary></details></li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Notes</summary><div class="indented"><figure id="ee242ce5-0eb1-4623-a25e-5b616a20bf00"><div class="source"><a href="Programmer%20-%20Tracker%20a1b390ea19aa47e9ab33a5e569163531/SAD_Week_1_Jan_5-_May_5.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/b512af15-3ba0-42ab-9a86-9a7f8d9a9d9c/52c63b62-7bd4-4ba9-b1a2-b9be716bdac7/SAD_Week_1_Jan_5-_May_5.pdf</a></div></figure></div></details></div></details><p id="cd989f7c-fc12-4712-9c97-303501940ac3" class="">
+</p><p id="6b617fc8-ead3-4295-aaf2-cc9397b99467" class="">
+</p></div></details></div><p id="9da7d992-2fe4-4fe8-83c1-310eed739191" class="">
+</p><p id="93891c18-1ee2-4d4e-999a-fc73148dc13d" class="">
+</p><hr id="0f239212-4b02-40ca-9fdb-636976e1a9cf"/><p id="82c924c1-22ae-44e0-8702-21465eed5b85" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
